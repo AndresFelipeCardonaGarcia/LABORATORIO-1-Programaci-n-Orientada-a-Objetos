@@ -1,19 +1,19 @@
-import java.util.UUID;
+public class Revista extends Material {
 
-public class revista extends material{
-    int edicion;
+    int numeroEdicion;
 
+    Revista(int id, String autor, String nombre,
+            boolean prestable, boolean descargable,
+            int numeroEdicion) {
 
-    revista(String id, String autor,String nombre, boolean prestable, boolean descargable, int edicion){
-        super(id, autor,nombre,prestable, descargable);
-        this.edicion = edicion;
+        super(id, autor, nombre, prestable, descargable);
+
+        this.numeroEdicion = numeroEdicion;
     }
+
     @Override
-    void mostrarInfo(){
+    void mostrarInfo() {
         super.mostrarInfo();
-        System.out.println("numero de edicion: " + edicion);
+        System.out.println("Numero de edicion: " + numeroEdicion);
     }
-
-
 }
-
