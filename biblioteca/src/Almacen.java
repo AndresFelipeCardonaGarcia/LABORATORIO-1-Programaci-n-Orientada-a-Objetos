@@ -2,18 +2,18 @@ import java.util.ArrayList;
 
 public class Almacen {
 
-    ArrayList<Libro> libros;
-    ArrayList<Revista> revistas;
-    ArrayList<LibroDigital> librosDigitales;
+    private ArrayList<Libro> libros;
+    private ArrayList<Revista> revistas;
+    private ArrayList<LibroDigital> librosDigitales;
 
-    int cantidadLibros;
-    int cantidadRevistas;
-    int cantidadDigitales;
-    int cantidadMateriales;
-    int siguienteId;
-    int cantidadCreados;
 
-    Almacen() {
+    private int cantidadLibros;
+    private int cantidadRevistas;
+    private int cantidadDigitales;
+    private int cantidadMateriales;
+    private int ultimoId;
+
+    public Almacen() {
 
         libros = new ArrayList<>();
         revistas = new ArrayList<>();
@@ -22,17 +22,15 @@ public class Almacen {
         cantidadRevistas = 0;
         cantidadDigitales = 0;
         cantidadMateriales = 0;
-        siguienteId = 0;
-        cantidadCreados = 0;
+        ultimoId = 0;
     }
 
-    int generarId() {
+    public int generarId() {
 
-        int id = siguienteId;
-        siguienteId++;
-        return id;
+        ultimoId++;
+
+        return ultimoId;
     }
-
     void guardarLibro(Libro libro) {
 
         libros.add(libro);
@@ -56,7 +54,7 @@ public class Almacen {
 
     void mostrarInfo() {
 
-        System.out.println("\nALMACEN ");
+        System.out.println("\n========== ALMACEN ==========");
         System.out.println("\nLIBROS:");
         System.out.println("Cantidad de libros: " + cantidadLibros);
 
@@ -80,6 +78,75 @@ public class Almacen {
             System.out.println("----------------------");
             libroDigital.mostrarInfo();
         }
+
+        System.out.println("\n==============================");
         System.out.println("TOTAL DE MATERIALES: " + cantidadMateriales);
+        System.out.println("==============================");
     }
+    public void prestarMaterial(int id) {
+
+        for (Libro libro : libros) {
+
+            if (libro.getId() == id) {
+
+                libro.prestar();
+
+                return;
+            }
+        }
+
+        for (Revista revista : revistas) {
+
+            if (revista.getId() == id) {
+
+                revista.prestar();
+
+                return;
+            }
+        }
+
+        for (LibroDigital digital : librosDigitales) {
+
+            if (digital.getId() == id) {
+
+                System.out.println(
+                        "El libro digital no se puede prestar."
+                );
+
+                return;
+            }
+        }
+
+        System.out.println(
+                "Material no encontrado."
+        );
+    }
+
+    public void devolverMaterial(int id) {
+
+        for (Libro libro : libros) {
+
+            if (libro.getId() == id) {
+
+                libro.devolver();
+
+                return;
+            }
+        }
+
+        for (Revista revista : revistas) {
+
+            if (revista.getId() == id) {
+
+                revista.devolver();
+
+                return;
+            }
+        }
+
+        System.out.println(
+                "Material no encontrado."
+        );
+    }
+
 }

@@ -2,10 +2,8 @@ import java.util.Scanner;
 
 public class Biblioteca {
 
-    Almacen almacen;
-
-    Biblioteca() {
-
+    private Almacen almacen;
+    public Biblioteca() {
         almacen = new Almacen();
     }
 
@@ -26,7 +24,9 @@ public class Biblioteca {
         Libro libro = new Libro(
                 id,
                 autor,
-                nombre
+                nombre,
+                true,
+                false
         );
 
         almacen.guardarLibro(libro);
@@ -57,6 +57,8 @@ public class Biblioteca {
                 id,
                 autor,
                 nombre,
+                true,
+                false,
                 numeroEdicion
         );
 
@@ -88,6 +90,8 @@ public class Biblioteca {
                 id,
                 autor,
                 nombre,
+                false,
+                true,
                 tamañoArchivo
         );
 
@@ -98,7 +102,25 @@ public class Biblioteca {
     }
 
     void mostrarCreados() {
-
         almacen.mostrarInfo();
     }
+    public void prestarMaterial() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print(
+                "Ingrese el ID del material: "
+        );
+        int id = scanner.nextInt();
+        almacen.prestarMaterial(id);
+    }
+    public void devolverMaterial() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print(
+                "Ingrese el ID del material: "
+        );
+        int id = scanner.nextInt();
+        almacen.devolverMaterial(id);
+    }
+
+
+
 }

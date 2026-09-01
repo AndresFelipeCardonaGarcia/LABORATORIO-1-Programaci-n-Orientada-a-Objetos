@@ -47,11 +47,10 @@ public class Main {
                     break;
 
                 case 5:
-                    System.out.println("Prestar material: en construccion.");
+                    biblioteca.prestarMaterial();
                     break;
-
                 case 6:
-                    System.out.println("Devolver material: en construccion.");
+                    biblioteca.devolverMaterial();
                     break;
 
                 case 7:

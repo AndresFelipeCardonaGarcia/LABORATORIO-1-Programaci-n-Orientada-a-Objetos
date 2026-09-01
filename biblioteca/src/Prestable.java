@@ -1,6 +1,5 @@
-public interface Prestable {
-
+public interface prestable {
     void prestar();
-
     void devolver();
+    boolean estaPrestado();
 }
