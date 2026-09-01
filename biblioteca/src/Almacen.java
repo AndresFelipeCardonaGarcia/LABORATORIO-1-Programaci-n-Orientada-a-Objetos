@@ -11,6 +11,7 @@ public class Almacen {
     int cantidadDigitales;
     int cantidadMateriales;
     int siguienteId;
+    int cantidadCreados;
 
     Almacen() {
 
@@ -22,6 +23,7 @@ public class Almacen {
         cantidadDigitales = 0;
         cantidadMateriales = 0;
         siguienteId = 0;
+        cantidadCreados = 0;
     }
 
     int generarId() {
@@ -54,7 +56,7 @@ public class Almacen {
 
     void mostrarInfo() {
 
-        System.out.println("\n========== ALMACEN ==========");
+        System.out.println("\nALMACEN ");
         System.out.println("\nLIBROS:");
         System.out.println("Cantidad de libros: " + cantidadLibros);
 
@@ -78,9 +80,6 @@ public class Almacen {
             System.out.println("----------------------");
             libroDigital.mostrarInfo();
         }
-
-        System.out.println("\n==============================");
         System.out.println("TOTAL DE MATERIALES: " + cantidadMateriales);
-        System.out.println("==============================");
     }
 }

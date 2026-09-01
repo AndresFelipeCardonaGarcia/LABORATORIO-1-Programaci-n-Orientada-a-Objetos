@@ -3,27 +3,20 @@ public class Material {
     int id;
     String autor;
     String nombre;
-    boolean prestable;
-    boolean descargable;
-    boolean disponible;
+    boolean isDisponible;
 
-    Material(int id, String autor, String nombre,
-             boolean prestable, boolean descargable) {
+    Material(int id, String autor, String nombre) {
 
         this.id = id;
         this.autor = autor;
         this.nombre = nombre;
-        this.prestable = prestable;
-        this.descargable = descargable;
-        this.disponible = true;
+        this.isDisponible = true;
     }
 
     void mostrarInfo() {
         System.out.println("ID: " + id);
         System.out.println("Autor: " + autor);
         System.out.println("Nombre: " + nombre);
-        System.out.println("Prestable: " + prestable);
-        System.out.println("Descargable: " + descargable);
-        System.out.println("Disponible: " + disponible);
+        System.out.println("Disponible: " + isDisponible);
     }
 }

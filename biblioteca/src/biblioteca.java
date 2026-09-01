@@ -26,9 +26,7 @@ public class Biblioteca {
         Libro libro = new Libro(
                 id,
                 autor,
-                nombre,
-                true,
-                false
+                nombre
         );
 
         almacen.guardarLibro(libro);
@@ -59,8 +57,6 @@ public class Biblioteca {
                 id,
                 autor,
                 nombre,
-                true,
-                false,
                 numeroEdicion
         );
 
@@ -92,8 +88,6 @@ public class Biblioteca {
                 id,
                 autor,
                 nombre,
-                false,
-                true,
                 tamañoArchivo
         );
 

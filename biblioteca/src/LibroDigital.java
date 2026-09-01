@@ -1,13 +1,11 @@
-public class LibroDigital extends Material {
+public class LibroDigital extends Material implements Descargable {
 
     float tamañoArchivo;
     int numeroDescargas;
 
     LibroDigital(int id, String autor, String nombre,
-                 boolean prestable, boolean descargable,
                  float tamañoArchivo) {
-
-        super(id, autor, nombre, prestable, descargable);
+        super(id, autor, nombre);
 
         this.tamañoArchivo = tamañoArchivo;
         this.numeroDescargas = 0;
@@ -20,7 +18,8 @@ public class LibroDigital extends Material {
         System.out.println("Numero de descargas: " + numeroDescargas);
     }
 
-    void descargar() {
+    @Override
+    public void descargar() {
 
         numeroDescargas++;
 
