@@ -1,4 +1,4 @@
-# LABORATORIO-1-Programaci-n-Orientada-a-Objetos
+# LABORATORIO-1-Programacion-Orientada-a-Objetos
 Caso de estudio: Sistema de gestión de una biblioteca universitaria
 1. Contexto y objetivo
 La biblioteca de una universidad requiere una aplicación sencilla que permita registrar y gestionar distintos tipos de materiales bibliográficos. El sistema se desarrollará como una aplicación de consola en Java y deberá utilizar Programación Orientada a Objetos como enfoque principal de solución.
