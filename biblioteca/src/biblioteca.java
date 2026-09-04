@@ -2,59 +2,71 @@ import java.util.Scanner;
 
 public class Biblioteca {
 
-    Almacen almacen;
+    private Material material;
+    private Almacen almacen;
 
-    Biblioteca() {
+    public Biblioteca() {
 
         almacen = new Almacen();
     }
 
-    void registrarLibro() {
+    public void Registrar_libro() {
 
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("\n=== REGISTRAR LIBRO ===");
 
         System.out.print("Nombre del libro: ");
+
         String nombre = scanner.nextLine();
 
         System.out.print("Autor: ");
+
         String autor = scanner.nextLine();
 
-        int id = almacen.generarId();
+        int ID = almacen.generarID();
 
         Libro libro = new Libro(
-                id,
+                ID,
                 autor,
                 nombre
         );
 
-        almacen.guardarLibro(libro);
+        almacen.guardadLibro(libro);
 
-        System.out.println("Libro registrado correctamente.");
-        System.out.println("ID asignado: " + id);
+        System.out.println(
+                "Libro registrado correctamente."
+        );
+
+        System.out.println(
+                "ID asignado: " + ID
+        );
     }
 
-    void registrarRevista() {
+    public void Registrar_revista() {
 
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("\n=== REGISTRAR REVISTA ===");
 
         System.out.print("Nombre de la revista: ");
+
         String nombre = scanner.nextLine();
 
         System.out.print("Autor: ");
+
         String autor = scanner.nextLine();
 
         System.out.print("Numero de edicion: ");
+
         int numeroEdicion = scanner.nextInt();
+
         scanner.nextLine();
 
-        int id = almacen.generarId();
+        int ID = almacen.generarID();
 
         Revista revista = new Revista(
-                id,
+                ID,
                 autor,
                 nombre,
                 numeroEdicion
@@ -62,43 +74,171 @@ public class Biblioteca {
 
         almacen.guardarRevista(revista);
 
-        System.out.println("Revista registrada correctamente.");
-        System.out.println("ID asignado: " + id);
+        System.out.println(
+                "Revista registrada correctamente."
+        );
+
+        System.out.println(
+                "ID asignado: " + ID
+        );
     }
 
-    void registrarDigital() {
+    public void Registrar_digital() {
 
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("\n=== REGISTRAR LIBRO DIGITAL ===");
+        System.out.println(
+                "\n=== REGISTRAR LIBRO DIGITAL ==="
+        );
 
-        System.out.print("Nombre del libro digital: ");
+        System.out.print(
+                "Nombre del libro digital: "
+        );
+
         String nombre = scanner.nextLine();
 
         System.out.print("Autor: ");
+
         String autor = scanner.nextLine();
 
-        System.out.print("Tamaño del archivo: ");
-        float tamañoArchivo = scanner.nextFloat();
+        System.out.print(
+                "Tamaño del archivo: "
+        );
+
+        float tamanoArchivo = scanner.nextFloat();
+
         scanner.nextLine();
 
-        int id = almacen.generarId();
+        int ID = almacen.generarID();
 
         LibroDigital digital = new LibroDigital(
-                id,
+                ID,
                 autor,
                 nombre,
-                tamañoArchivo
+                tamanoArchivo
         );
 
         almacen.guardarLibroDigital(digital);
 
-        System.out.println("Libro digital registrado correctamente.");
-        System.out.println("ID asignado: " + id);
+        System.out.println(
+                "Libro digital registrado correctamente."
+        );
+
+        System.out.println(
+                "ID asignado: " + ID
+        );
     }
 
-    void mostrarCreados() {
+    public void Mostrar_creados() {
 
         almacen.mostrarInfo();
+    }
+
+    public void prestarMaterial() {
+
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print(
+                "Ingrese el ID del material: "
+        );
+
+        int ID = scanner.nextInt();
+
+        Material material = almacen.buscarMaterial(ID);
+
+        if (material == null) {
+
+            System.out.println(
+                    "Material no encontrado."
+            );
+
+            return;
+        }
+
+        if (material instanceof prestable) {
+
+            prestable materialPrestable =
+                    (prestable) material;
+
+            materialPrestable.prestar();
+
+        } else {
+
+            System.out.println(
+                    "Este material no se puede prestar."
+            );
+        }
+    }
+
+    public void devolverMaterial() {
+
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print(
+                "Ingrese el ID del material: "
+        );
+
+        int ID = scanner.nextInt();
+
+        Material material = almacen.buscarMaterial(ID);
+
+        if (material == null) {
+
+            System.out.println(
+                    "Material no encontrado."
+            );
+
+            return;
+        }
+
+        if (material instanceof prestable) {
+
+            prestable materialPrestable =
+                    (prestable) material;
+
+            materialPrestable.devolver();
+
+        } else {
+
+            System.out.println(
+                    "Este material no se puede devolver."
+            );
+        }
+    }
+
+    public void descargarMaterial() {
+
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print(
+                "Ingrese el ID del material: "
+        );
+
+        int ID = scanner.nextInt();
+
+        Material material = almacen.buscarMaterial(ID);
+
+        if (material == null) {
+
+            System.out.println(
+                    "Material no encontrado."
+            );
+
+            return;
+        }
+
+        if (material instanceof Descargable) {
+
+            Descargable materialDescargable =
+                    (Descargable) material;
+
+            materialDescargable.descargar();
+
+        } else {
+
+            System.out.println(
+                    "Este material no se puede descargar."
+            );
+        }
     }
 }

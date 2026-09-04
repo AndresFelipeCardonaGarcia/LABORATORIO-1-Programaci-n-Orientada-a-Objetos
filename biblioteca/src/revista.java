@@ -1,36 +1,72 @@
-public class Revista extends Material implements Prestable {
+public class Revista extends Material implements prestable {
 
-    int numeroEdicion;
+    private int numeroEdicion;
+    private boolean prestada;
 
-    Revista(int id, String autor, String nombre,
-            int numeroEdicion) {
+    public Revista(int Id, String autor, String nombre,
+                   int numeroEdicion) {
 
-        super(id, autor, nombre);
+        super(Id, autor, nombre);
 
         this.numeroEdicion = numeroEdicion;
+
+        this.prestada = false;
     }
 
-    @Override
-    void mostrarInfo() {
-        super.mostrarInfo();
-        System.out.println("Numero de edicion: " + numeroEdicion);
+    public int getNumeroEdicion() {
+
+        return numeroEdicion;
     }
 
     @Override
     public void prestar() {
 
-        if (isDisponible) {
-            isDisponible = false;
-            System.out.println("La revista fue prestada.");
-        } else {
-            System.out.println("La revista no está disponible.");
+        if (prestada) {
+
+            System.out.println("La revista ya esta prestada.");
+
+            return;
         }
+
+        prestada = true;
+
+        setDisponible(false);
+
+        System.out.println("Revista prestada correctamente.");
     }
 
     @Override
     public void devolver() {
 
-        isDisponible = true;
-        System.out.println("La revista fue devuelta.");
+        if (!prestada) {
+
+            System.out.println("La revista no estaba prestada.");
+
+            return;
+        }
+
+        prestada = false;
+
+        setDisponible(true);
+
+        System.out.println("Revista devuelta correctamente.");
+    }
+
+    @Override
+    public void mostarInfo() {
+
+        System.out.println("\n=== REVISTA ===");
+
+        System.out.println("ID: " + getId());
+
+        System.out.println("Nombre: " + getNombre());
+
+        System.out.println("Autor: " + getAutor());
+
+        System.out.println("Numero de edicion: " +
+                numeroEdicion);
+
+        System.out.println("Estado: " +
+                (prestada ? "Prestada" : "Disponible"));
     }
 }

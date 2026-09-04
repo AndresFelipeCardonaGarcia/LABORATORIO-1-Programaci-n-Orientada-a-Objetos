@@ -12,7 +12,7 @@ public class Main {
 
         do {
 
-            System.out.println("\nBIBLIOTECA ");
+            System.out.println("\n===== BIBLIOTECA =====");
             System.out.println("1. Registrar libro");
             System.out.println("2. Registrar revista");
             System.out.println("3. Registrar libro digital");
@@ -23,51 +23,84 @@ public class Main {
             System.out.println("8. Mostrar estadisticas");
             System.out.println("0. Salir");
 
+            System.out.print(
+                    "Seleccione una opcion: "
+            );
 
-            System.out.print("Seleccione una opcion: ");
             opcion = scanner.nextInt();
+
             scanner.nextLine();
 
             switch (opcion) {
 
                 case 1:
-                    biblioteca.registrarLibro();
+
+                    biblioteca.Registrar_libro();
+
                     break;
 
                 case 2:
-                    biblioteca.registrarRevista();
+
+                    biblioteca.Registrar_revista();
+
                     break;
 
                 case 3:
-                    biblioteca.registrarDigital();
+
+                    biblioteca.Registrar_digital();
+
                     break;
 
                 case 4:
-                    biblioteca.mostrarCreados();
+
+                    biblioteca.Mostrar_creados();
+
                     break;
 
                 case 5:
-                    System.out.println("Prestar material: en construccion.");
+
+                    biblioteca.prestarMaterial();
+
                     break;
 
                 case 6:
-                    System.out.println("Devolver material: en construccion.");
+
+                    biblioteca.devolverMaterial();
+
                     break;
 
                 case 7:
-                    System.out.println("Descargar material digital: en construccion.");
+
+                    biblioteca.descargarMaterial();
+
                     break;
 
                 case 8:
-                    System.out.println("Mostrar estadisticas: en construccion.");
+
+                    System.out.println(
+                            "\n=== ESTADISTICAS ==="
+                    );
+
+                    System.out.println(
+                            "Total de materiales creados: " +
+                            Material.getCantidadMateriales()
+                    );
+
                     break;
 
                 case 0:
-                    System.out.println("Saliendo del programa...");
+
+                    System.out.println(
+                            "Saliendo del programa..."
+                    );
+
                     break;
 
                 default:
-                    System.out.println("Opcion no valida.");
+
+                    System.out.println(
+                            "Opcion no valida."
+                    );
             }
 
         } while (opcion != 0);

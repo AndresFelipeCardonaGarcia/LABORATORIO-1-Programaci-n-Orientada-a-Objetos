@@ -1,25 +1,60 @@
-public class Libro extends Material implements Prestable {
+public class Libro extends Material implements prestable {
 
-    Libro(int id, String autor, String nombre) {
+    private boolean prestado;
 
-        super(id, autor, nombre);
+    public Libro(int Id, String autor, String nombre) {
+
+        super(Id, autor, nombre);
+
+        this.prestado = false;
     }
 
     @Override
     public void prestar() {
 
-        if (isDisponible) {
-            isDisponible = false;
-            System.out.println("El libro fue prestado.");
-        } else {
-            System.out.println("El libro no está disponible.");
+        if (prestado) {
+
+            System.out.println("El libro ya esta prestado.");
+
+            return;
         }
+
+        prestado = true;
+
+        setDisponible(false);
+
+        System.out.println("Libro prestado correctamente.");
     }
 
     @Override
     public void devolver() {
 
-        isDisponible = true;
-        System.out.println("El libro fue devuelto.");
+        if (!prestado) {
+
+            System.out.println("El libro no estaba prestado.");
+
+            return;
+        }
+
+        prestado = false;
+
+        setDisponible(true);
+
+        System.out.println("Libro devuelto correctamente.");
+    }
+
+    @Override
+    public void mostarInfo() {
+
+        System.out.println("\n=== LIBRO ===");
+
+        System.out.println("ID: " + getId());
+
+        System.out.println("Nombre: " + getNombre());
+
+        System.out.println("Autor: " + getAutor());
+
+        System.out.println("Estado: " +
+                (prestado ? "Prestado" : "Disponible"));
     }
 }

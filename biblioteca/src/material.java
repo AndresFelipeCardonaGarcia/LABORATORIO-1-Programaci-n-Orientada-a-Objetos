@@ -1,22 +1,50 @@
-public class Material {
+public abstract class Material {
 
-    int id;
-    String autor;
-    String nombre;
-    boolean isDisponible;
+    private int Id;
+    private String autor;
+    private String nombre;
+    private boolean isDisponible;
 
-    Material(int id, String autor, String nombre) {
+    private static int cantidadMateriales = 0;
 
-        this.id = id;
+    public Material(int Id, String autor, String nombre) {
+
+        this.Id = Id;
         this.autor = autor;
         this.nombre = nombre;
         this.isDisponible = true;
+
+        cantidadMateriales++;
     }
 
-    void mostrarInfo() {
-        System.out.println("ID: " + id);
-        System.out.println("Autor: " + autor);
-        System.out.println("Nombre: " + nombre);
-        System.out.println("Disponible: " + isDisponible);
+    public Material(int Id, String nombre) {
+
+        this(Id, "Desconocido", nombre);
     }
+
+    public int getId() {
+        return Id;
+    }
+
+    public String getAutor() {
+        return autor;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public boolean isDisponible() {
+        return isDisponible;
+    }
+
+    public void setDisponible(boolean isDisponible) {
+        this.isDisponible = isDisponible;
+    }
+
+    public static int getCantidadMateriales() {
+        return cantidadMateriales;
+    }
+
+    public abstract void mostarInfo();
 }

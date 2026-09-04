@@ -1,4 +1,4 @@
-public interface Prestable {
+public interface prestable {
 
     void prestar();
 

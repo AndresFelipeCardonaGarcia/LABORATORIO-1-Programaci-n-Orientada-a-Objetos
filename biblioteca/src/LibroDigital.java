@@ -1,29 +1,63 @@
 public class LibroDigital extends Material implements Descargable {
 
-    float tamañoArchivo;
-    int numeroDescargas;
+    private float tamanoArchivo;
+    private int cantidadDescargado;
 
-    LibroDigital(int id, String autor, String nombre,
-                 float tamañoArchivo) {
-        super(id, autor, nombre);
+    public LibroDigital(int Id, String autor, String nombre,
+                        float tamanoArchivo) {
 
-        this.tamañoArchivo = tamañoArchivo;
-        this.numeroDescargas = 0;
+        super(Id, autor, nombre);
+
+        this.tamanoArchivo = tamanoArchivo;
+
+        this.cantidadDescargado = 0;
     }
 
-    @Override
-    void mostrarInfo() {
-        super.mostrarInfo();
-        System.out.println("Tamaño del archivo: " + tamañoArchivo);
-        System.out.println("Numero de descargas: " + numeroDescargas);
+    public float getTamanoArchivo() {
+
+        return tamanoArchivo;
+    }
+
+    public int getCantidadDescargado() {
+
+        return cantidadDescargado;
     }
 
     @Override
     public void descargar() {
 
-        numeroDescargas++;
+        cantidadDescargado++;
 
-        System.out.println("Descargando " + nombre + "...");
-        System.out.println("Descarga completada.");
+        System.out.println(
+                "Libro digital descargado correctamente."
+        );
+
+        System.out.println(
+                "Cantidad de descargas: " +
+                cantidadDescargado
+        );
+    }
+
+    @Override
+    public void mostarInfo() {
+
+        System.out.println("\n=== LIBRO DIGITAL ===");
+
+        System.out.println("ID: " + getId());
+
+        System.out.println("Nombre: " + getNombre());
+
+        System.out.println("Autor: " + getAutor());
+
+        System.out.println(
+                "Tamaño del archivo: " +
+                tamanoArchivo +
+                " MB"
+        );
+
+        System.out.println(
+                "Cantidad de descargas: " +
+                cantidadDescargado
+        );
     }
 }
