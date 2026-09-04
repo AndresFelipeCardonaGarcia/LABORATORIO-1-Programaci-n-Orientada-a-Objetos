@@ -6,7 +6,7 @@ public class Main {
 
         Scanner scanner = new Scanner(System.in);
 
-        Biblioteca biblioteca = new Biblioteca();
+        Biblioteca biblioteca = new Biblioteca(scanner);
 
         int opcion;
 

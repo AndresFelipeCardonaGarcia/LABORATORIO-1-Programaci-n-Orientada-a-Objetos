@@ -2,26 +2,23 @@ import java.util.Scanner;
 
 public class Biblioteca {
 
-    private Material material;
     private Almacen almacen;
+    private Scanner scanner;
 
-    public Biblioteca() {
+    public Biblioteca(Scanner scanner) {
 
         almacen = new Almacen();
+        this.scanner = scanner;
     }
 
     public void Registrar_libro() {
 
-        Scanner scanner = new Scanner(System.in);
-
         System.out.println("\n=== REGISTRAR LIBRO ===");
 
         System.out.print("Nombre del libro: ");
-
         String nombre = scanner.nextLine();
 
         System.out.print("Autor: ");
-
         String autor = scanner.nextLine();
 
         int ID = almacen.generarID();
@@ -34,31 +31,21 @@ public class Biblioteca {
 
         almacen.guardadLibro(libro);
 
-        System.out.println(
-                "Libro registrado correctamente."
-        );
-
-        System.out.println(
-                "ID asignado: " + ID
-        );
+        System.out.println("Libro registrado correctamente.");
+        System.out.println("ID asignado: " + ID);
     }
 
     public void Registrar_revista() {
 
-        Scanner scanner = new Scanner(System.in);
-
         System.out.println("\n=== REGISTRAR REVISTA ===");
 
         System.out.print("Nombre de la revista: ");
-
         String nombre = scanner.nextLine();
 
         System.out.print("Autor: ");
-
         String autor = scanner.nextLine();
 
         System.out.print("Numero de edicion: ");
-
         int numeroEdicion = scanner.nextInt();
 
         scanner.nextLine();
@@ -74,37 +61,21 @@ public class Biblioteca {
 
         almacen.guardarRevista(revista);
 
-        System.out.println(
-                "Revista registrada correctamente."
-        );
-
-        System.out.println(
-                "ID asignado: " + ID
-        );
+        System.out.println("Revista registrada correctamente.");
+        System.out.println("ID asignado: " + ID);
     }
 
     public void Registrar_digital() {
 
-        Scanner scanner = new Scanner(System.in);
+        System.out.println("\n=== REGISTRAR LIBRO DIGITAL ===");
 
-        System.out.println(
-                "\n=== REGISTRAR LIBRO DIGITAL ==="
-        );
-
-        System.out.print(
-                "Nombre del libro digital: "
-        );
-
+        System.out.print("Nombre del libro digital: ");
         String nombre = scanner.nextLine();
 
         System.out.print("Autor: ");
-
         String autor = scanner.nextLine();
 
-        System.out.print(
-                "Tamaño del archivo: "
-        );
-
+        System.out.print("Tamaño del archivo: ");
         float tamanoArchivo = scanner.nextFloat();
 
         scanner.nextLine();
@@ -124,9 +95,7 @@ public class Biblioteca {
                 "Libro digital registrado correctamente."
         );
 
-        System.out.println(
-                "ID asignado: " + ID
-        );
+        System.out.println("ID asignado: " + ID);
     }
 
     public void Mostrar_creados() {
@@ -136,22 +105,14 @@ public class Biblioteca {
 
     public void prestarMaterial() {
 
-        Scanner scanner = new Scanner(System.in);
-
-        System.out.print(
-                "Ingrese el ID del material: "
-        );
-
+        System.out.print("Ingrese el ID del material: ");
         int ID = scanner.nextInt();
 
         Material material = almacen.buscarMaterial(ID);
 
         if (material == null) {
 
-            System.out.println(
-                    "Material no encontrado."
-            );
-
+            System.out.println("Material no encontrado.");
             return;
         }
 
@@ -172,22 +133,14 @@ public class Biblioteca {
 
     public void devolverMaterial() {
 
-        Scanner scanner = new Scanner(System.in);
-
-        System.out.print(
-                "Ingrese el ID del material: "
-        );
-
+        System.out.print("Ingrese el ID del material: ");
         int ID = scanner.nextInt();
 
         Material material = almacen.buscarMaterial(ID);
 
         if (material == null) {
 
-            System.out.println(
-                    "Material no encontrado."
-            );
-
+            System.out.println("Material no encontrado.");
             return;
         }
 
@@ -208,22 +161,14 @@ public class Biblioteca {
 
     public void descargarMaterial() {
 
-        Scanner scanner = new Scanner(System.in);
-
-        System.out.print(
-                "Ingrese el ID del material: "
-        );
-
+        System.out.print("Ingrese el ID del material: ");
         int ID = scanner.nextInt();
 
         Material material = almacen.buscarMaterial(ID);
 
         if (material == null) {
 
-            System.out.println(
-                    "Material no encontrado."
-            );
-
+            System.out.println("Material no encontrado.");
             return;
         }
 
