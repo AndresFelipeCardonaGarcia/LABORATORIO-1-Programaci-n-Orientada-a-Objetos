@@ -10,6 +10,14 @@ public class Main {
 
         int opcion;
 
+
+        //desde aqui se modifico el codigo
+
+        int materialesRegistrados = 0;
+
+        //hasta aqui se modifico el codigo
+
+
         do {
 
             System.out.println("\n===== BIBLIOTECA =====");
@@ -23,12 +31,9 @@ public class Main {
             System.out.println("8. Mostrar estadisticas");
             System.out.println("0. Salir");
 
-            System.out.print(
-                    "Seleccione una opcion: "
-            );
+            System.out.print("Seleccione una opcion: ");
 
             opcion = scanner.nextInt();
-
             scanner.nextLine();
 
             switch (opcion) {
@@ -37,17 +42,41 @@ public class Main {
 
                     biblioteca.Registrar_libro();
 
+
+                    //desde aqui se modifico el codigo
+
+                    materialesRegistrados++;
+
+                    //hasta aqui se modifico el codigo
+
+
                     break;
 
                 case 2:
 
                     biblioteca.Registrar_revista();
 
+
+                    //desde aqui se modifico el codigo
+
+                    materialesRegistrados++;
+
+                    //hasta aqui se modifico el codigo
+
+
                     break;
 
                 case 3:
 
                     biblioteca.Registrar_digital();
+
+
+                    //desde aqui se modifico el codigo
+
+                    materialesRegistrados++;
+
+                    //hasta aqui se modifico el codigo
+
 
                     break;
 
@@ -77,30 +106,30 @@ public class Main {
 
                 case 8:
 
-                    System.out.println(
-                            "\n=== ESTADISTICAS ==="
-                    );
+                    System.out.println("\n=== ESTADISTICAS ===");
+
+
+                    //desde aqui se modifico el codigo
 
                     System.out.println(
-                            "Total de materiales creados: " +
-                            Material.getCantidadMateriales()
+                            "Materiales registrados durante la ejecucion: "
+                            + materialesRegistrados
                     );
+
+                    //hasta aqui se modifico el codigo
+
 
                     break;
 
                 case 0:
 
-                    System.out.println(
-                            "Saliendo del programa..."
-                    );
+                    System.out.println("Saliendo del programa...");
 
                     break;
 
                 default:
 
-                    System.out.println(
-                            "Opcion no valida."
-                    );
+                    System.out.println("Opcion no valida.");
             }
 
         } while (opcion != 0);
