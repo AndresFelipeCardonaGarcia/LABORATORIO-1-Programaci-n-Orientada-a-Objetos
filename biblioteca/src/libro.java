@@ -1,7 +1,7 @@
 public class Libro extends Material implements Prestable {
 
+    // Constructor completo
     Libro(int id, String autor, String nombre) {
-
         super(id, autor, nombre);
     }
 

@@ -23,7 +23,6 @@ public class Main {
             System.out.println("8. Mostrar estadisticas");
             System.out.println("0. Salir");
 
-
             System.out.print("Seleccione una opcion: ");
             opcion = scanner.nextInt();
             scanner.nextLine();
@@ -55,7 +54,7 @@ public class Main {
                     break;
 
                 case 7:
-                    System.out.println("Descargar material digital: en construccion.");
+                    biblioteca.descargarMaterial();
                     break;
 
                 case 8:
