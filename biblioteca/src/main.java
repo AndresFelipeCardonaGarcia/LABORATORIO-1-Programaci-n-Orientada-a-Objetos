@@ -8,7 +8,8 @@ public class Main {
 
         Biblioteca biblioteca = new Biblioteca(scanner);
 
-        // Contador de materiales registrados por el usuario
+        // Cuenta únicamente los materiales registrados
+        // por el usuario durante la ejecución.
         int materialesCreados = 0;
 
         int opcion;
@@ -35,8 +36,8 @@ public class Main {
 
                 case 1:
 
-                    // El submenú devuelve cuántos materiales
-                    // registró el usuario.
+                    // El submenú devuelve la cantidad de materiales
+                    // registrados durante esta ejecución.
                     materialesCreados +=
                             mostrarSubMenuRegistro(scanner, biblioteca);
 
@@ -68,6 +69,12 @@ public class Main {
 
                 case 6:
 
+                    biblioteca.eliminarMaterial();
+
+                    break;
+
+                case 7:
+
                     mostrarEstadisticas(materialesCreados);
 
                     break;
@@ -89,7 +96,7 @@ public class Main {
     }
 
     // ==========================================
-    // MENU PRINCIPAL
+    // MENÚ PRINCIPAL
     // ==========================================
 
     private static void mostrarMenu() {
@@ -102,13 +109,14 @@ public class Main {
         System.out.println("3. Prestar material");
         System.out.println("4. Devolver material");
         System.out.println("5. Descargar libro digital");
-        System.out.println("6. Mostrar estadísticas");
+        System.out.println("6. Eliminar material");
+        System.out.println("7. Mostrar estadísticas");
         System.out.println("0. Salir");
         System.out.println("======================================");
     }
 
     // ==========================================
-    // SUBMENU DE REGISTRO
+    // SUBMENÚ DE REGISTRO
     // ==========================================
 
     private static int mostrarSubMenuRegistro(
@@ -117,8 +125,7 @@ public class Main {
 
         int opcion;
 
-        // Contador de registros realizados
-        // solamente dentro de este submenú.
+        // Cuenta los materiales registrados desde este submenú.
         int registrados = 0;
 
         do {
@@ -174,7 +181,9 @@ public class Main {
 
                 case 0:
 
-                    System.out.println("Regresando al menú principal.");
+                    System.out.println(
+                            "Regresando al menú principal."
+                    );
 
                     break;
 
@@ -189,7 +198,7 @@ public class Main {
     }
 
     // ==========================================
-    // ESTADISTICAS
+    // ESTADÍSTICAS
     // ==========================================
 
     private static void mostrarEstadisticas(int materialesCreados) {
@@ -198,14 +207,14 @@ public class Main {
         System.out.println("             ESTADÍSTICAS");
         System.out.println("======================================");
 
-        // Este valor incluye los 6 materiales iniciales
-        // y todos los materiales registrados posteriormente.
+        // Este contador incluye los materiales iniciales
+        // y los registrados posteriormente.
         System.out.println(
                 "Total de materiales: "
                 + Material.getCantidadMateriales()
         );
 
-        // Este valor SOLO incluye los materiales
+        // Este contador solamente cuenta los materiales
         // registrados por el usuario durante la ejecución.
         System.out.println(
                 "Materiales registrados durante la ejecución: "

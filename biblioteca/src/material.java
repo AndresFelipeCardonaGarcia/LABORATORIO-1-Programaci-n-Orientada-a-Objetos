@@ -42,8 +42,17 @@ public abstract class Material {
         this.disponible = disponible;
     }
 
+    // Retorna la cantidad total actual de materiales
     public static int getCantidadMateriales() {
         return cantidadMateriales;
+    }
+
+    // Disminuye el contador cuando se elimina un material
+    public static void disminuirCantidadMateriales() {
+
+        if (cantidadMateriales > 0) {
+            cantidadMateriales--;
+        }
     }
 
     public abstract void mostrarInfo();

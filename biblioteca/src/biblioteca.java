@@ -5,6 +5,10 @@ public class Biblioteca {
     private Almacen almacen;
     private Scanner scanner;
 
+    // ==========================================
+    // CONSTRUCTOR
+    // ==========================================
+
     public Biblioteca(Scanner scanner) {
 
         this.scanner = scanner;
@@ -13,9 +17,16 @@ public class Biblioteca {
         cargarMaterialesIniciales();
     }
 
+    // ==========================================
+    // CARGAR MATERIALES INICIALES
+    // ==========================================
+
     private void cargarMaterialesIniciales() {
 
-        // Libros
+        // --------------------------------------
+        // LIBROS
+        // --------------------------------------
+
         Libro libro1 = new Libro(
                 almacen.generarId(),
                 "Gabriel García Márquez",
@@ -28,7 +39,10 @@ public class Biblioteca {
                 "Harry Potter"
         );
 
-        // Libros digitales
+        // --------------------------------------
+        // LIBROS DIGITALES
+        // --------------------------------------
+
         LibroDigital digital1 = new LibroDigital(
                 almacen.generarId(),
                 "Yuval Noah Harari",
@@ -43,7 +57,10 @@ public class Biblioteca {
                 8.2f
         );
 
-        // Revistas
+        // --------------------------------------
+        // REVISTAS
+        // --------------------------------------
+
         Revista revista1 = new Revista(
                 almacen.generarId(),
                 "National Geographic",
@@ -57,6 +74,10 @@ public class Biblioteca {
                 "Ciencia y tecnología",
                 87
         );
+
+        // --------------------------------------
+        // GUARDAR EN EL ALMACÉN
+        // --------------------------------------
 
         almacen.guardarLibro(libro1);
         almacen.guardarLibro(libro2);
@@ -74,22 +95,39 @@ public class Biblioteca {
 
     public void registrarLibro() {
 
-        System.out.println("\n========== REGISTRAR LIBRO ==========");
+        System.out.println(
+                "\n========== REGISTRAR LIBRO =========="
+        );
 
-        System.out.print("Nombre del libro (Enter para omitir): ");
+        System.out.print(
+                "Nombre del libro (Enter para omitir): "
+        );
+
         String nombre = scanner.nextLine();
 
-        System.out.print("Autor (Enter para omitir): ");
+        System.out.print(
+                "Autor (Enter para omitir): "
+        );
+
         String autor = scanner.nextLine();
 
         int id = almacen.generarId();
 
-        Libro libro = new Libro(id, autor, nombre);
+        Libro libro = new Libro(
+                id,
+                autor,
+                nombre
+        );
 
         almacen.guardarLibro(libro);
 
-        System.out.println("\nLibro registrado correctamente.");
-        System.out.println("ID asignado: " + id);
+        System.out.println(
+                "\nLibro registrado correctamente."
+        );
+
+        System.out.println(
+                "ID asignado: " + id
+        );
     }
 
     // ==========================================
@@ -98,15 +136,26 @@ public class Biblioteca {
 
     public void registrarRevista() {
 
-        System.out.println("\n========== REGISTRAR REVISTA ==========");
+        System.out.println(
+                "\n========== REGISTRAR REVISTA =========="
+        );
 
-        System.out.print("Nombre de la revista (Enter para omitir): ");
+        System.out.print(
+                "Nombre de la revista (Enter para omitir): "
+        );
+
         String nombre = scanner.nextLine();
 
-        System.out.print("Autor (Enter para omitir): ");
+        System.out.print(
+                "Autor (Enter para omitir): "
+        );
+
         String autor = scanner.nextLine();
 
-        System.out.print("Número de edición (Enter para omitir): ");
+        System.out.print(
+                "Número de edición (Enter para omitir): "
+        );
+
         String entradaEdicion = scanner.nextLine();
 
         int numeroEdicion = 0;
@@ -114,12 +163,15 @@ public class Biblioteca {
         if (!entradaEdicion.isEmpty()) {
 
             try {
-                numeroEdicion = Integer.parseInt(entradaEdicion);
+
+                numeroEdicion =
+                        Integer.parseInt(entradaEdicion);
 
             } catch (NumberFormatException e) {
 
                 System.out.println(
-                        "Número de edición inválido. Se dejará como pendiente."
+                        "Número de edición inválido. "
+                        + "Se dejará como pendiente."
                 );
 
                 numeroEdicion = 0;
@@ -131,15 +183,32 @@ public class Biblioteca {
         Revista revista;
 
         if (entradaEdicion.isEmpty()) {
-            revista = new Revista(id, autor, nombre);
+
+            revista = new Revista(
+                    id,
+                    autor,
+                    nombre
+            );
+
         } else {
-            revista = new Revista(id, autor, nombre, numeroEdicion);
+
+            revista = new Revista(
+                    id,
+                    autor,
+                    nombre,
+                    numeroEdicion
+            );
         }
 
         almacen.guardarRevista(revista);
 
-        System.out.println("\nRevista registrada correctamente.");
-        System.out.println("ID asignado: " + id);
+        System.out.println(
+                "\nRevista registrada correctamente."
+        );
+
+        System.out.println(
+                "ID asignado: " + id
+        );
     }
 
     // ==========================================
@@ -148,15 +217,26 @@ public class Biblioteca {
 
     public void registrarLibroDigital() {
 
-        System.out.println("\n========== REGISTRAR LIBRO DIGITAL ==========");
+        System.out.println(
+                "\n========== REGISTRAR LIBRO DIGITAL =========="
+        );
 
-        System.out.print("Nombre del libro (Enter para omitir): ");
+        System.out.print(
+                "Nombre del libro (Enter para omitir): "
+        );
+
         String nombre = scanner.nextLine();
 
-        System.out.print("Autor (Enter para omitir): ");
+        System.out.print(
+                "Autor (Enter para omitir): "
+        );
+
         String autor = scanner.nextLine();
 
-        System.out.print("Tamaño del archivo en MB (Enter para omitir): ");
+        System.out.print(
+                "Tamaño del archivo en MB (Enter para omitir): "
+        );
+
         String entradaTamano = scanner.nextLine();
 
         float tamano = 0;
@@ -164,12 +244,15 @@ public class Biblioteca {
         if (!entradaTamano.isEmpty()) {
 
             try {
-                tamano = Float.parseFloat(entradaTamano);
+
+                tamano =
+                        Float.parseFloat(entradaTamano);
 
             } catch (NumberFormatException e) {
 
                 System.out.println(
-                        "Tamaño inválido. Se dejará como pendiente."
+                        "Tamaño inválido. "
+                        + "Se dejará como pendiente."
                 );
 
                 tamano = 0;
@@ -181,8 +264,15 @@ public class Biblioteca {
         LibroDigital libroDigital;
 
         if (entradaTamano.isEmpty()) {
-            libroDigital = new LibroDigital(id, autor, nombre);
+
+            libroDigital = new LibroDigital(
+                    id,
+                    autor,
+                    nombre
+            );
+
         } else {
+
             libroDigital = new LibroDigital(
                     id,
                     autor,
@@ -193,8 +283,13 @@ public class Biblioteca {
 
         almacen.guardarLibroDigital(libroDigital);
 
-        System.out.println("\nLibro digital registrado correctamente.");
-        System.out.println("ID asignado: " + id);
+        System.out.println(
+                "\nLibro digital registrado correctamente."
+        );
+
+        System.out.println(
+                "ID asignado: " + id
+        );
     }
 
     // ==========================================
@@ -212,9 +307,17 @@ public class Biblioteca {
 
     public void prestarMaterial() {
 
-        almacen.mostrarDisponiblesParaPrestar();
+        boolean hayDisponibles =
+                almacen.mostrarDisponibles();
 
-        System.out.print("\nIngrese el ID del material que desea prestar: ");
+        if (!hayDisponibles) {
+
+            return;
+        }
+
+        System.out.print(
+                "\nIngrese el ID del material que desea prestar: "
+        );
 
         String entrada = scanner.nextLine();
 
@@ -227,30 +330,42 @@ public class Biblioteca {
         } catch (NumberFormatException e) {
 
             System.out.println("ID inválido.");
+
             return;
         }
 
-        Material material = almacen.buscarMaterial(id);
+        Material material =
+                almacen.buscarMaterial(id);
 
         if (material == null) {
 
-            System.out.println("No existe un material con ese ID.");
+            System.out.println(
+                    "No existe un material con ese ID."
+            );
+
             return;
         }
 
         if (!(material instanceof Prestable)) {
 
-            System.out.println("Este material no se puede prestar.");
+            System.out.println(
+                    "Este material no se puede prestar."
+            );
+
             return;
         }
 
         if (!material.isDisponible()) {
 
-            System.out.println("Este material ya se encuentra prestado.");
+            System.out.println(
+                    "Este material ya se encuentra prestado."
+            );
+
             return;
         }
 
-        Prestable prestable = (Prestable) material;
+        Prestable prestable =
+                (Prestable) material;
 
         prestable.prestar();
     }
@@ -263,7 +378,9 @@ public class Biblioteca {
 
         almacen.mostrarPrestados();
 
-        System.out.print("\nIngrese el ID del material que desea devolver: ");
+        System.out.print(
+                "\nIngrese el ID del material que desea devolver: "
+        );
 
         String entrada = scanner.nextLine();
 
@@ -276,30 +393,42 @@ public class Biblioteca {
         } catch (NumberFormatException e) {
 
             System.out.println("ID inválido.");
+
             return;
         }
 
-        Material material = almacen.buscarMaterial(id);
+        Material material =
+                almacen.buscarMaterial(id);
 
         if (material == null) {
 
-            System.out.println("No existe un material con ese ID.");
+            System.out.println(
+                    "No existe un material con ese ID."
+            );
+
             return;
         }
 
         if (!(material instanceof Prestable)) {
 
-            System.out.println("Este material no se puede devolver.");
+            System.out.println(
+                    "Este material no se puede devolver."
+            );
+
             return;
         }
 
         if (material.isDisponible()) {
 
-            System.out.println("Este material no se encuentra prestado.");
+            System.out.println(
+                    "Este material no se encuentra prestado."
+            );
+
             return;
         }
 
-        Prestable prestable = (Prestable) material;
+        Prestable prestable =
+                (Prestable) material;
 
         prestable.devolver();
     }
@@ -310,9 +439,17 @@ public class Biblioteca {
 
     public void descargarMaterial() {
 
-        almacen.mostrarDescargables();
+        boolean hayDescargables =
+                almacen.mostrarDescargable();
 
-        System.out.print("\nIngrese el ID del libro digital: ");
+        if (!hayDescargables) {
+
+            return;
+        }
+
+        System.out.print(
+                "\nIngrese el ID del libro digital: "
+        );
 
         String entrada = scanner.nextLine();
 
@@ -325,25 +462,129 @@ public class Biblioteca {
         } catch (NumberFormatException e) {
 
             System.out.println("ID inválido.");
+
             return;
         }
 
-        Material material = almacen.buscarMaterial(id);
+        Material material =
+                almacen.buscarMaterial(id);
 
         if (material == null) {
 
-            System.out.println("No existe un material con ese ID.");
+            System.out.println(
+                    "No existe un material con ese ID."
+            );
+
             return;
         }
 
         if (!(material instanceof Descargable)) {
 
-            System.out.println("Este material no es descargable.");
+            System.out.println(
+                    "Este material no es descargable."
+            );
+
             return;
         }
 
-        Descargable descargable = (Descargable) material;
+        Descargable descargable =
+                (Descargable) material;
 
         descargable.descargar();
+    }
+
+    // ==========================================
+    // ELIMINAR MATERIAL
+    // ==========================================
+
+    public void eliminarMaterial() {
+
+        System.out.println(
+                "\n========== ELIMINAR MATERIAL =========="
+        );
+
+        /*
+         * Mostramos los materiales que pueden
+         * ser eliminados.
+         *
+         * Los libros y revistas disponibles
+         * aparecen mediante mostrarDisponibles().
+         *
+         * Los libros digitales aparecen mediante
+         * mostrarDescargable().
+         */
+
+        boolean hayDisponibles =
+                almacen.mostrarDisponibles();
+
+        boolean hayDescargables =
+                almacen.mostrarDescargable();
+
+        /*
+         * Si no hay ningún material disponible
+         * ni ningún libro digital, no hay nada
+         * que eliminar.
+         */
+        if (!hayDisponibles && !hayDescargables) {
+
+            return;
+        }
+
+        System.out.print(
+                "\nIngrese el ID del material que desea eliminar: "
+        );
+
+        String entrada = scanner.nextLine();
+
+        int id;
+
+        try {
+
+            id = Integer.parseInt(entrada);
+
+        } catch (NumberFormatException e) {
+
+            System.out.println("ID inválido.");
+
+            return;
+        }
+
+        Material material =
+                almacen.buscarMaterial(id);
+
+        if (material == null) {
+
+            System.out.println(
+                    "Material no encontrado."
+            );
+
+            return;
+        }
+
+        /*
+         * Un material prestado no puede eliminarse.
+         */
+        if (!material.isDisponible()) {
+
+            System.out.println(
+                    "No se puede eliminar un material "
+                    + "que está prestado."
+            );
+
+            return;
+        }
+
+        if (almacen.eliminarMaterial(id)) {
+
+            System.out.println(
+                    "Material eliminado correctamente."
+            );
+
+        } else {
+
+            System.out.println(
+                    "No se pudo eliminar el material."
+            );
+        }
     }
 }
