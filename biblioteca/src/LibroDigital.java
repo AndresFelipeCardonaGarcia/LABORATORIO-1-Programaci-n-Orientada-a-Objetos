@@ -1,29 +1,57 @@
 public class LibroDigital extends Material implements Descargable {
 
-    float tamañoArchivo;
-    int numeroDescargas;
+    private float tamanoArchivo;
+    private int cantidadDescargas;
 
-    LibroDigital(int id, String autor, String nombre,
-                 float tamañoArchivo) {
+    public LibroDigital(int id, String autor, String nombre, float tamanoArchivo) {
         super(id, autor, nombre);
-
-        this.tamañoArchivo = tamañoArchivo;
-        this.numeroDescargas = 0;
+        this.tamanoArchivo = tamanoArchivo;
+        this.cantidadDescargas = 0;
     }
 
-    @Override
-    void mostrarInfo() {
-        super.mostrarInfo();
-        System.out.println("Tamaño del archivo: " + tamañoArchivo);
-        System.out.println("Numero de descargas: " + numeroDescargas);
+    // Constructor que permite omitir el autor
+    public LibroDigital(int id, String nombre, float tamanoArchivo) {
+        super(id, nombre);
+        this.tamanoArchivo = tamanoArchivo;
+        this.cantidadDescargas = 0;
+    }
+
+    // Constructor que permite omitir el tamaño
+    public LibroDigital(int id, String autor, String nombre) {
+        super(id, autor, nombre);
+        this.tamanoArchivo = 0;
+        this.cantidadDescargas = 0;
     }
 
     @Override
     public void descargar() {
 
-        numeroDescargas++;
+        cantidadDescargas++;
 
-        System.out.println("Descargando " + nombre + "...");
-        System.out.println("Descarga completada.");
+        System.out.println("El libro digital se ha descargado correctamente.");
+        System.out.println("Cantidad de descargas: " + cantidadDescargas);
+    }
+
+    @Override
+    public void mostrarInfo() {
+
+        System.out.println("----------------------------------");
+        System.out.println("Tipo: Libro digital");
+        System.out.println("ID: " + getId());
+        System.out.println("Nombre: " + getNombre());
+
+        if (getAutor().isEmpty()) {
+            System.out.println("Autor: Pendiente");
+        } else {
+            System.out.println("Autor: " + getAutor());
+        }
+
+        if (tamanoArchivo == 0) {
+            System.out.println("Tamaño del archivo: Pendiente");
+        } else {
+            System.out.println("Tamaño del archivo: " + tamanoArchivo + " MB");
+        }
+
+        System.out.println("Cantidad de descargas: " + cantidadDescargas);
     }
 }

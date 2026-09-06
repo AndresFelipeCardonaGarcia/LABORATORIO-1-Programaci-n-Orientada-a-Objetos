@@ -1,22 +1,50 @@
-public class Material {
+public abstract class Material {
 
-    int id;
-    String autor;
-    String nombre;
-    boolean isDisponible;
+    private int id;
+    private String autor;
+    private String nombre;
+    private boolean disponible;
 
-    Material(int id, String autor, String nombre) {
+    // Contador total de materiales existentes
+    private static int cantidadMateriales = 0;
 
+    public Material(int id, String autor, String nombre) {
         this.id = id;
         this.autor = autor;
         this.nombre = nombre;
-        this.isDisponible = true;
+        this.disponible = true;
+
+        cantidadMateriales++;
     }
 
-    void mostrarInfo() {
-        System.out.println("ID: " + id);
-        System.out.println("Autor: " + autor);
-        System.out.println("Nombre: " + nombre);
-        System.out.println("Disponible: " + isDisponible);
+    // Constructor que permite omitir el autor
+    public Material(int id, String nombre) {
+        this(id, "", nombre);
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getAutor() {
+        return autor;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public boolean isDisponible() {
+        return disponible;
+    }
+
+    public void setDisponible(boolean disponible) {
+        this.disponible = disponible;
+    }
+
+    public static int getCantidadMateriales() {
+        return cantidadMateriales;
+    }
+
+    public abstract void mostrarInfo();
 }

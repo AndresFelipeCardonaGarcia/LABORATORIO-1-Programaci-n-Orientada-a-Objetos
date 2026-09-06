@@ -2,84 +2,115 @@ import java.util.ArrayList;
 
 public class Almacen {
 
-    ArrayList<Libro> libros;
-    ArrayList<Revista> revistas;
-    ArrayList<LibroDigital> librosDigitales;
+    private ArrayList<Material> materiales;
+    private int ultimoId;
 
-    int cantidadLibros;
-    int cantidadRevistas;
-    int cantidadDigitales;
-    int cantidadMateriales;
-    int siguienteId;
-    int cantidadCreados;
-
-    Almacen() {
-
-        libros = new ArrayList<>();
-        revistas = new ArrayList<>();
-        librosDigitales = new ArrayList<>();
-        cantidadLibros = 0;
-        cantidadRevistas = 0;
-        cantidadDigitales = 0;
-        cantidadMateriales = 0;
-        siguienteId = 0;
-        cantidadCreados = 0;
+    public Almacen() {
+        materiales = new ArrayList<>();
+        ultimoId = 0;
     }
 
-    int generarId() {
-
-        int id = siguienteId;
-        siguienteId++;
-        return id;
+    public int generarId() {
+        ultimoId++;
+        return ultimoId;
     }
 
-    void guardarLibro(Libro libro) {
-
-        libros.add(libro);
-        cantidadLibros++;
-        cantidadMateriales++;
+    public void guardarLibro(Libro libro) {
+        materiales.add(libro);
     }
 
-    void guardarRevista(Revista revista) {
-
-        revistas.add(revista);
-        cantidadRevistas++;
-        cantidadMateriales++;
+    public void guardarRevista(Revista revista) {
+        materiales.add(revista);
     }
 
-    void guardarLibroDigital(LibroDigital libroDigital) {
-
-        librosDigitales.add(libroDigital);
-        cantidadDigitales++;
-        cantidadMateriales++;
+    public void guardarLibroDigital(LibroDigital libroDigital) {
+        materiales.add(libroDigital);
     }
 
-    void mostrarInfo() {
+    public Material buscarMaterial(int id) {
 
-        System.out.println("\nALMACEN ");
-        System.out.println("\nLIBROS:");
-        System.out.println("Cantidad de libros: " + cantidadLibros);
+        for (Material material : materiales) {
 
-        for (Libro libro : libros) {
-            System.out.println("----------------------");
-            libro.mostrarInfo();
+            if (material.getId() == id) {
+                return material;
+            }
         }
 
-        System.out.println("\nREVISTAS:");
-        System.out.println("Cantidad de revistas: " + cantidadRevistas);
+        return null;
+    }
 
-        for (Revista revista : revistas) {
-            System.out.println("----------------------");
-            revista.mostrarInfo();
+    public void mostrarInfo() {
+
+        if (materiales.isEmpty()) {
+            System.out.println("No hay materiales registrados.");
+            return;
         }
 
-        System.out.println("\nLIBROS DIGITALES:");
-        System.out.println("Cantidad de libros digitales: " + cantidadDigitales);
+        System.out.println("\n========== MATERIALES ==========");
 
-        for (LibroDigital libroDigital : librosDigitales) {
-            System.out.println("----------------------");
-            libroDigital.mostrarInfo();
+        for (Material material : materiales) {
+            material.mostrarInfo();
         }
-        System.out.println("TOTAL DE MATERIALES: " + cantidadMateriales);
+
+        System.out.println("----------------------------------");
+        System.out.println("Total de materiales: "
+                + Material.getCantidadMateriales());
+    }
+
+    public void mostrarDisponiblesParaPrestar() {
+
+        boolean hayDisponibles = false;
+
+        System.out.println("\n===== MATERIALES DISPONIBLES PARA PRESTAR =====");
+
+        for (Material material : materiales) {
+
+            if (material instanceof Prestable && material.isDisponible()) {
+                material.mostrarInfo();
+                hayDisponibles = true;
+            }
+        }
+
+        if (!hayDisponibles) {
+            System.out.println("No hay materiales disponibles para prestar.");
+        }
+    }
+
+    public void mostrarPrestados() {
+
+        boolean hayPrestados = false;
+
+        System.out.println("\n===== MATERIALES PRESTADOS =====");
+
+        for (Material material : materiales) {
+
+            if (material instanceof Prestable && !material.isDisponible()) {
+                material.mostrarInfo();
+                hayPrestados = true;
+            }
+        }
+
+        if (!hayPrestados) {
+            System.out.println("No hay materiales prestados.");
+        }
+    }
+
+    public void mostrarDescargables() {
+
+        boolean hayDigitales = false;
+
+        System.out.println("\n===== LIBROS DIGITALES DISPONIBLES =====");
+
+        for (Material material : materiales) {
+
+            if (material instanceof Descargable) {
+                material.mostrarInfo();
+                hayDigitales = true;
+            }
+        }
+
+        if (!hayDigitales) {
+            System.out.println("No hay libros digitales.");
+        }
     }
 }
