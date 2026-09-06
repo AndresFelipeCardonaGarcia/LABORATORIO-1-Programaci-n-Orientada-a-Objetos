@@ -207,9 +207,9 @@ public class Almacen {
 
     public boolean eliminarMaterial(int id) {
 
-        Material material = buscarMaterial(id);
+        Material material =
+                buscarMaterial(id);
 
-        // Verificar que el material exista
         if (material == null) {
 
             return false;
@@ -221,12 +221,11 @@ public class Almacen {
             return false;
         }
 
-        // Eliminar el material del almacén
         materiales.remove(material);
 
-        // Disminuir el contador total
         Material.disminuirCantidadMateriales();
 
         return true;
     }
 }
+

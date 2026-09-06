@@ -4,7 +4,8 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Scanner scanner = new Scanner(System.in);
+        Scanner scanner =
+                new Scanner(System.in);
 
         Biblioteca biblioteca =
                 new Biblioteca(scanner);
@@ -43,10 +44,6 @@ public class Main {
 
             switch (opcion) {
 
-                // ==================================
-                // REGISTRAR
-                // ==================================
-
                 case 1:
 
                     materialesCreados +=
@@ -57,19 +54,11 @@ public class Main {
 
                     break;
 
-                // ==================================
-                // MOSTRAR
-                // ==================================
-
                 case 2:
 
                     biblioteca.mostrarCreados();
 
                     break;
-
-                // ==================================
-                // PRESTAR
-                // ==================================
 
                 case 3:
 
@@ -77,19 +66,11 @@ public class Main {
 
                     break;
 
-                // ==================================
-                // DEVOLVER
-                // ==================================
-
                 case 4:
 
                     biblioteca.devolverMaterial();
 
                     break;
-
-                // ==================================
-                // DESCARGAR
-                // ==================================
 
                 case 5:
 
@@ -97,29 +78,17 @@ public class Main {
 
                     break;
 
-                // ==================================
-                // ELIMINAR
-                // ==================================
-
                 case 6:
 
                     biblioteca.eliminarMaterial();
 
                     break;
 
-                // ==================================
-                // EDITAR
-                // ==================================
-
                 case 7:
 
                     biblioteca.editarMaterial();
 
                     break;
-
-                // ==================================
-                // ESTADÍSTICAS
-                // ==================================
 
                 case 8:
 
@@ -128,10 +97,6 @@ public class Main {
                     );
 
                     break;
-
-                // ==================================
-                // SALIR
-                // ==================================
 
                 case 0:
 
@@ -222,8 +187,6 @@ public class Main {
 
         int opcion;
 
-        // Cuenta los materiales registrados
-        // desde este submenú.
         int registrados = 0;
 
         do {
@@ -346,14 +309,11 @@ public class Main {
                 "======================================"
         );
 
-        // Contador total actual.
         System.out.println(
                 "Total de materiales: "
                 + Material.getCantidadMateriales()
         );
 
-        // Materiales registrados durante
-        // esta ejecución.
         System.out.println(
                 "Materiales registrados durante "
                 + "la ejecución: "
@@ -365,4 +325,3 @@ public class Main {
         );
     }
 }
-

@@ -1,29 +1,42 @@
 public class Libro extends Material implements Prestable {
 
+    // Atributo propio del libro
+    private String autor;
+
     private boolean prestado;
 
     // ==========================================
-    // CONSTRUCTORES
+    // CONSTRUCTOR
     // ==========================================
 
     public Libro(
             int id,
-            String autor,
-            String nombre) {
+            String nombre,
+            int Publicacion,
+            String autor) {
 
-        super(id, autor, nombre);
+        super(
+                id,
+                nombre,
+                Publicacion
+        );
 
+        this.autor = autor;
         this.prestado = false;
     }
 
-    // Constructor que permite omitir el autor
-    public Libro(
-            int id,
-            String nombre) {
+    // ==========================================
+    // GETTER Y SETTER DEL AUTOR
+    // ==========================================
 
-        super(id, nombre);
+    public String getAutor() {
 
-        this.prestado = false;
+        return autor;
+    }
+
+    public void setAutor(String autor) {
+
+        this.autor = autor;
     }
 
     // ==========================================
@@ -87,16 +100,30 @@ public class Libro extends Material implements Prestable {
 
         System.out.println("Tipo: Libro");
         System.out.println("ID: " + getId());
-        System.out.println("Nombre: " + getNombre());
+        System.out.println("Título: " + getNombre());
 
-        if (getAutor().isEmpty()) {
+        if (autor.isEmpty()) {
 
             System.out.println("Autor: Pendiente");
 
         } else {
 
             System.out.println(
-                    "Autor: " + getAutor()
+                    "Autor: " + autor
+            );
+        }
+
+        if (getPublicacion() == 0) {
+
+            System.out.println(
+                    "Año de publicación: Pendiente"
+            );
+
+        } else {
+
+            System.out.println(
+                    "Año de publicación: "
+                    + getPublicacion()
             );
         }
 
@@ -110,3 +137,4 @@ public class Libro extends Material implements Prestable {
         }
     }
 }
+

@@ -1,8 +1,8 @@
 public abstract class Material {
 
     private int id;
-    private String autor;
     private String nombre;
+    private int Publicacion;
     private boolean disponible;
 
     // Contador total de materiales existentes
@@ -12,20 +12,17 @@ public abstract class Material {
     // CONSTRUCTOR
     // ==========================================
 
-    public Material(int id, String autor, String nombre) {
+    public Material(
+            int id,
+            String nombre,
+            int Publicacion) {
 
         this.id = id;
-        this.autor = autor;
         this.nombre = nombre;
+        this.Publicacion = Publicacion;
         this.disponible = true;
 
         cantidadMateriales++;
-    }
-
-    // Constructor que permite omitir el autor
-    public Material(int id, String nombre) {
-
-        this(id, "", nombre);
     }
 
     // ==========================================
@@ -37,14 +34,14 @@ public abstract class Material {
         return id;
     }
 
-    public String getAutor() {
-
-        return autor;
-    }
-
     public String getNombre() {
 
         return nombre;
+    }
+
+    public int getPublicacion() {
+
+        return Publicacion;
     }
 
     public boolean isDisponible() {
@@ -56,14 +53,14 @@ public abstract class Material {
     // SETTERS
     // ==========================================
 
-    public void setAutor(String autor) {
-
-        this.autor = autor;
-    }
-
     public void setNombre(String nombre) {
 
         this.nombre = nombre;
+    }
+
+    public void setPublicacion(int anioPublicacion) {
+
+        this.Publicacion = anioPublicacion;
     }
 
     public void setDisponible(boolean disponible) {
@@ -80,7 +77,8 @@ public abstract class Material {
         return cantidadMateriales;
     }
 
-    // Disminuye el contador cuando se elimina un material
+    // Disminuye el contador cuando se elimina
+    // un material
     public static void disminuirCantidadMateriales() {
 
         if (cantidadMateriales > 0) {

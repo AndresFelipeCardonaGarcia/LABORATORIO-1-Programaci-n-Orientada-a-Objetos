@@ -1,45 +1,27 @@
 public class Revista extends Material implements Prestable {
 
+    // Atributo propio de la revista
     private int numeroEdicion;
+
     private boolean prestada;
 
     // ==========================================
-    // CONSTRUCTORES
+    // CONSTRUCTOR
     // ==========================================
 
     public Revista(
             int id,
-            String autor,
             String nombre,
+            int Publicacion,
             int numeroEdicion) {
 
-        super(id, autor, nombre);
+        super(
+                id,
+                nombre,
+                Publicacion
+        );
 
         this.numeroEdicion = numeroEdicion;
-        this.prestada = false;
-    }
-
-    // Constructor que permite omitir el autor
-    public Revista(
-            int id,
-            String nombre,
-            int numeroEdicion) {
-
-        super(id, nombre);
-
-        this.numeroEdicion = numeroEdicion;
-        this.prestada = false;
-    }
-
-    // Constructor que permite omitir el número de edición
-    public Revista(
-            int id,
-            String autor,
-            String nombre) {
-
-        super(id, autor, nombre);
-
-        this.numeroEdicion = 0;
         this.prestada = false;
     }
 
@@ -52,7 +34,8 @@ public class Revista extends Material implements Prestable {
         return numeroEdicion;
     }
 
-    public void setNumeroEdicion(int numeroEdicion) {
+    public void setNumeroEdicion(
+            int numeroEdicion) {
 
         this.numeroEdicion = numeroEdicion;
     }
@@ -118,16 +101,19 @@ public class Revista extends Material implements Prestable {
 
         System.out.println("Tipo: Revista");
         System.out.println("ID: " + getId());
-        System.out.println("Nombre: " + getNombre());
+        System.out.println("Título: " + getNombre());
 
-        if (getAutor().isEmpty()) {
+        if (getPublicacion() == 0) {
 
-            System.out.println("Autor: Pendiente");
+            System.out.println(
+                    "Año de publicación: Pendiente"
+            );
 
         } else {
 
             System.out.println(
-                    "Autor: " + getAutor()
+                    "Año de publicación: "
+                    + getPublicacion()
             );
         }
 

@@ -1,58 +1,54 @@
 public class LibroDigital extends Material implements Descargable {
 
+    // Atributos propios del libro digital
+    private String autor;
     private float tamanoArchivo;
+
     private int cantidadDescargas;
 
     // ==========================================
-    // CONSTRUCTORES
+    // CONSTRUCTOR
     // ==========================================
 
     public LibroDigital(
             int id,
-            String autor,
             String nombre,
+            int Publicacion,
+            String autor,
             float tamanoArchivo) {
 
-        super(id, autor, nombre);
+        super(
+                id,
+                nombre,
+                Publicacion
+        );
 
+        this.autor = autor;
         this.tamanoArchivo = tamanoArchivo;
         this.cantidadDescargas = 0;
     }
 
-    // Constructor que permite omitir el autor
-    public LibroDigital(
-            int id,
-            String nombre,
-            float tamanoArchivo) {
+    // ==========================================
+    // GETTERS Y SETTERS
+    // ==========================================
 
-        super(id, nombre);
+    public String getAutor() {
 
-        this.tamanoArchivo = tamanoArchivo;
-        this.cantidadDescargas = 0;
+        return autor;
     }
 
-    // Constructor que permite omitir el tamaño
-    public LibroDigital(
-            int id,
-            String autor,
-            String nombre) {
+    public void setAutor(String autor) {
 
-        super(id, autor, nombre);
-
-        this.tamanoArchivo = 0;
-        this.cantidadDescargas = 0;
+        this.autor = autor;
     }
-
-    // ==========================================
-    // GETTER Y SETTER
-    // ==========================================
 
     public float getTamanoArchivo() {
 
         return tamanoArchivo;
     }
 
-    public void setTamanoArchivo(float tamanoArchivo) {
+    public void setTamanoArchivo(
+            float tamanoArchivo) {
 
         this.tamanoArchivo = tamanoArchivo;
     }
@@ -96,10 +92,10 @@ public class LibroDigital extends Material implements Descargable {
         );
 
         System.out.println(
-                "Nombre: " + getNombre()
+                "Título: " + getNombre()
         );
 
-        if (getAutor().isEmpty()) {
+        if (autor.isEmpty()) {
 
             System.out.println(
                     "Autor: Pendiente"
@@ -108,7 +104,21 @@ public class LibroDigital extends Material implements Descargable {
         } else {
 
             System.out.println(
-                    "Autor: " + getAutor()
+                    "Autor: " + autor
+            );
+        }
+
+        if (getPublicacion() == 0) {
+
+            System.out.println(
+                    "Año de publicación: Pendiente"
+            );
+
+        } else {
+
+            System.out.println(
+                    "Año de publicación: "
+                    + getPublicacion()
             );
         }
 
