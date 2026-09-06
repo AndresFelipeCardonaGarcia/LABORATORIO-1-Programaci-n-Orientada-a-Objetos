@@ -1,34 +1,29 @@
 public abstract class Material {
 
-    private int id;
+    private int Id;
     private String autor;
     private String nombre;
-    private boolean prestable;
-    private boolean descargable;
-    private boolean disponible;
+    private boolean isDisponible;
 
-    private static int contadorMateriales = 0;
+    private static int cantidadMateriales = 0;
 
-    public Material(int id, String autor, String nombre,
-                    boolean prestable, boolean descargable) {
+    public Material(int Id, String autor, String nombre) {
 
-        this.id = id;
+        this.Id = Id;
         this.autor = autor;
         this.nombre = nombre;
-        this.prestable = prestable;
-        this.descargable = descargable;
-        this.disponible = true;
+        this.isDisponible = true;
 
-        contadorMateriales++;
+        cantidadMateriales++;
     }
 
-    // Sobrecarga de constructor
-    public Material(int id, String nombre) {
-        this(id, "Desconocido", nombre, false, false);
+    public Material(int Id, String nombre) {
+
+        this(Id, "Desconocido", nombre);
     }
 
     public int getId() {
-        return id;
+        return Id;
     }
 
     public String getAutor() {
@@ -39,25 +34,17 @@ public abstract class Material {
         return nombre;
     }
 
-    public boolean isPrestable() {
-        return prestable;
-    }
-
-    public boolean isDescargable() {
-        return descargable;
-    }
-
     public boolean isDisponible() {
-        return disponible;
+        return isDisponible;
     }
 
-    public void setDisponible(boolean disponible) {
-        this.disponible = disponible;
+    public void setDisponible(boolean isDisponible) {
+        this.isDisponible = isDisponible;
     }
 
-    public static int getContadorMateriales() {
-        return contadorMateriales;
+    public static int getCantidadMateriales() {
+        return cantidadMateriales;
     }
 
-    public abstract void mostrarInfo();
+    public abstract void mostarInfo();
 }
