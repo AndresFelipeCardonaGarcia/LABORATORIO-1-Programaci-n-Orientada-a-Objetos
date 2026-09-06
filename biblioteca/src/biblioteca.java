@@ -302,6 +302,214 @@ public class Biblioteca {
     }
 
     // ==========================================
+    // EDITAR MATERIAL
+    // ==========================================
+
+    public void editarMaterial() {
+
+        System.out.println(
+                "\n========== EDITAR MATERIAL =========="
+        );
+
+        // Mostrar todos los materiales
+        almacen.mostrarInfo();
+
+        System.out.print(
+                "\nIngrese el ID del material que desea editar: "
+        );
+
+        String entradaId = scanner.nextLine();
+
+        int id;
+
+        try {
+
+            id = Integer.parseInt(entradaId);
+
+        } catch (NumberFormatException e) {
+
+            System.out.println("ID inválido.");
+
+            return;
+        }
+
+        // Buscar el material
+        Material material =
+                almacen.buscarMaterial(id);
+
+        if (material == null) {
+
+            System.out.println(
+                    "No existe un material con ese ID."
+            );
+
+            return;
+        }
+
+        System.out.println(
+                "\nMaterial encontrado:"
+        );
+
+        material.mostrarInfo();
+
+        System.out.println(
+                "\nPresione Enter para conservar el dato actual."
+        );
+
+        // ==========================================
+        // EDITAR NOMBRE
+        // ==========================================
+
+        System.out.print(
+                "\nNombre actual: "
+                + material.getNombre()
+                + "\nNuevo nombre: "
+        );
+
+        String nuevoNombre = scanner.nextLine();
+
+        if (!nuevoNombre.isEmpty()) {
+
+            material.setNombre(nuevoNombre);
+        }
+
+        // ==========================================
+        // EDITAR AUTOR
+        // ==========================================
+
+        System.out.print(
+                "\nAutor actual: "
+                + (material.getAutor().isEmpty()
+                        ? "Pendiente"
+                        : material.getAutor())
+                + "\nNuevo autor: "
+        );
+
+        String nuevoAutor = scanner.nextLine();
+
+        if (!nuevoAutor.isEmpty()) {
+
+            material.setAutor(nuevoAutor);
+        }
+
+        // ==========================================
+        // EDITAR REVISTA
+        // ==========================================
+
+        if (material instanceof Revista) {
+
+            Revista revista =
+                    (Revista) material;
+
+            System.out.print(
+                    "\nNúmero de edición actual: "
+                    + (revista.getNumeroEdicion() == 0
+                            ? "Pendiente"
+                            : revista.getNumeroEdicion())
+                    + "\nNuevo número de edición: "
+            );
+
+            String nuevaEdicion =
+                    scanner.nextLine();
+
+            if (!nuevaEdicion.isEmpty()) {
+
+                try {
+
+                    int numeroEdicion =
+                            Integer.parseInt(nuevaEdicion);
+
+                    if (numeroEdicion >= 0) {
+
+                        revista.setNumeroEdicion(
+                                numeroEdicion
+                        );
+
+                    } else {
+
+                        System.out.println(
+                                "El número de edición "
+                                + "no puede ser negativo."
+                        );
+                    }
+
+                } catch (NumberFormatException e) {
+
+                    System.out.println(
+                            "Número de edición inválido. "
+                            + "Se conservará el anterior."
+                    );
+                }
+            }
+        }
+
+        // ==========================================
+        // EDITAR LIBRO DIGITAL
+        // ==========================================
+
+        if (material instanceof LibroDigital) {
+
+            LibroDigital libroDigital =
+                    (LibroDigital) material;
+
+            System.out.print(
+                    "\nTamaño actual: "
+                    + (libroDigital.getTamanoArchivo() == 0
+                            ? "Pendiente"
+                            : libroDigital.getTamanoArchivo()
+                                    + " MB")
+                    + "\nNuevo tamaño en MB: "
+            );
+
+            String nuevoTamano =
+                    scanner.nextLine();
+
+            if (!nuevoTamano.isEmpty()) {
+
+                try {
+
+                    float tamano =
+                            Float.parseFloat(nuevoTamano);
+
+                    if (tamano >= 0) {
+
+                        libroDigital.setTamanoArchivo(
+                                tamano
+                        );
+
+                    } else {
+
+                        System.out.println(
+                                "El tamaño no puede ser negativo."
+                        );
+                    }
+
+                } catch (NumberFormatException e) {
+
+                    System.out.println(
+                            "Tamaño inválido. "
+                            + "Se conservará el anterior."
+                    );
+                }
+            }
+        }
+
+        // ==========================================
+        // RESULTADO
+        // ==========================================
+
+        System.out.println(
+                "\nMaterial editado correctamente."
+        );
+
+        System.out.println(
+                "\nInformación actualizada:"
+        );
+
+        material.mostrarInfo();
+    }
+
+    // ==========================================
     // PRESTAR MATERIAL
     // ==========================================
 
@@ -503,28 +711,12 @@ public class Biblioteca {
                 "\n========== ELIMINAR MATERIAL =========="
         );
 
-        /*
-         * Mostramos los materiales que pueden
-         * ser eliminados.
-         *
-         * Los libros y revistas disponibles
-         * aparecen mediante mostrarDisponibles().
-         *
-         * Los libros digitales aparecen mediante
-         * mostrarDescargable().
-         */
-
         boolean hayDisponibles =
                 almacen.mostrarDisponibles();
 
         boolean hayDescargables =
                 almacen.mostrarDescargable();
 
-        /*
-         * Si no hay ningún material disponible
-         * ni ningún libro digital, no hay nada
-         * que eliminar.
-         */
         if (!hayDisponibles && !hayDescargables) {
 
             return;
@@ -561,9 +753,6 @@ public class Biblioteca {
             return;
         }
 
-        /*
-         * Un material prestado no puede eliminarse.
-         */
         if (!material.isDisponible()) {
 
             System.out.println(
@@ -588,3 +777,4 @@ public class Biblioteca {
         }
     }
 }
+

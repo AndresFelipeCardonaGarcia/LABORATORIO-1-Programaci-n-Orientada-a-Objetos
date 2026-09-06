@@ -10,6 +10,7 @@ public class Almacen {
     // ==========================================
 
     public Almacen() {
+
         materiales = new ArrayList<>();
         ultimoId = 0;
     }
@@ -47,7 +48,8 @@ public class Almacen {
     // GUARDAR LIBRO DIGITAL
     // ==========================================
 
-    public void guardarLibroDigital(LibroDigital libroDigital) {
+    public void guardarLibroDigital(
+            LibroDigital libroDigital) {
 
         materiales.add(libroDigital);
     }
@@ -77,19 +79,25 @@ public class Almacen {
 
         if (materiales.isEmpty()) {
 
-            System.out.println("No hay materiales registrados.");
+            System.out.println(
+                    "No hay materiales registrados."
+            );
 
             return;
         }
 
-        System.out.println("\n========== MATERIALES ==========");
+        System.out.println(
+                "\n========== MATERIALES =========="
+        );
 
         for (Material material : materiales) {
 
             material.mostrarInfo();
         }
 
-        System.out.println("----------------------------------");
+        System.out.println(
+                "----------------------------------"
+        );
 
         System.out.println(
                 "Total de materiales: "
@@ -216,7 +224,7 @@ public class Almacen {
         // Eliminar el material del almacén
         materiales.remove(material);
 
-        // Disminuir la cantidad total de materiales
+        // Disminuir el contador total
         Material.disminuirCantidadMateriales();
 
         return true;

@@ -6,10 +6,12 @@ public class Main {
 
         Scanner scanner = new Scanner(System.in);
 
-        Biblioteca biblioteca = new Biblioteca(scanner);
+        Biblioteca biblioteca =
+                new Biblioteca(scanner);
 
-        // Cuenta únicamente los materiales registrados
-        // por el usuario durante la ejecución.
+        // Cuenta únicamente los materiales
+        // registrados por el usuario durante
+        // la ejecución.
         int materialesCreados = 0;
 
         int opcion;
@@ -18,30 +20,46 @@ public class Main {
 
             mostrarMenu();
 
-            System.out.print("Seleccione una opción: ");
+            System.out.print(
+                    "Seleccione una opción: "
+            );
 
-            String entrada = scanner.nextLine();
+            String entrada =
+                    scanner.nextLine();
 
             try {
 
-                opcion = Integer.parseInt(entrada);
+                opcion =
+                        Integer.parseInt(entrada);
 
             } catch (NumberFormatException e) {
 
-                System.out.println("Opción inválida.");
+                System.out.println(
+                        "Opción inválida."
+                );
+
                 opcion = -1;
             }
 
             switch (opcion) {
 
+                // ==================================
+                // REGISTRAR
+                // ==================================
+
                 case 1:
 
-                    // El submenú devuelve la cantidad de materiales
-                    // registrados durante esta ejecución.
                     materialesCreados +=
-                            mostrarSubMenuRegistro(scanner, biblioteca);
+                            mostrarSubMenuRegistro(
+                                    scanner,
+                                    biblioteca
+                            );
 
                     break;
+
+                // ==================================
+                // MOSTRAR
+                // ==================================
 
                 case 2:
 
@@ -49,11 +67,19 @@ public class Main {
 
                     break;
 
+                // ==================================
+                // PRESTAR
+                // ==================================
+
                 case 3:
 
                     biblioteca.prestarMaterial();
 
                     break;
+
+                // ==================================
+                // DEVOLVER
+                // ==================================
 
                 case 4:
 
@@ -61,11 +87,19 @@ public class Main {
 
                     break;
 
+                // ==================================
+                // DESCARGAR
+                // ==================================
+
                 case 5:
 
                     biblioteca.descargarMaterial();
 
                     break;
+
+                // ==================================
+                // ELIMINAR
+                // ==================================
 
                 case 6:
 
@@ -73,21 +107,45 @@ public class Main {
 
                     break;
 
+                // ==================================
+                // EDITAR
+                // ==================================
+
                 case 7:
 
-                    mostrarEstadisticas(materialesCreados);
+                    biblioteca.editarMaterial();
 
                     break;
 
+                // ==================================
+                // ESTADÍSTICAS
+                // ==================================
+
+                case 8:
+
+                    mostrarEstadisticas(
+                            materialesCreados
+                    );
+
+                    break;
+
+                // ==================================
+                // SALIR
+                // ==================================
+
                 case 0:
 
-                    System.out.println("\nPrograma finalizado.");
+                    System.out.println(
+                            "\nPrograma finalizado."
+                    );
 
                     break;
 
                 default:
 
-                    System.out.println("\nOpción inválida.");
+                    System.out.println(
+                            "\nOpción inválida."
+                    );
             }
 
         } while (opcion != 0);
@@ -101,18 +159,57 @@ public class Main {
 
     private static void mostrarMenu() {
 
-        System.out.println("\n======================================");
-        System.out.println("           SISTEMA BIBLIOTECA");
-        System.out.println("======================================");
-        System.out.println("1. Registrar material");
-        System.out.println("2. Mostrar materiales");
-        System.out.println("3. Prestar material");
-        System.out.println("4. Devolver material");
-        System.out.println("5. Descargar libro digital");
-        System.out.println("6. Eliminar material");
-        System.out.println("7. Mostrar estadísticas");
-        System.out.println("0. Salir");
-        System.out.println("======================================");
+        System.out.println(
+                "\n======================================"
+        );
+
+        System.out.println(
+                "           SISTEMA BIBLIOTECA"
+        );
+
+        System.out.println(
+                "======================================"
+        );
+
+        System.out.println(
+                "1. Registrar material"
+        );
+
+        System.out.println(
+                "2. Mostrar materiales"
+        );
+
+        System.out.println(
+                "3. Prestar material"
+        );
+
+        System.out.println(
+                "4. Devolver material"
+        );
+
+        System.out.println(
+                "5. Descargar libro digital"
+        );
+
+        System.out.println(
+                "6. Eliminar material"
+        );
+
+        System.out.println(
+                "7. Editar material"
+        );
+
+        System.out.println(
+                "8. Mostrar estadísticas"
+        );
+
+        System.out.println(
+                "0. Salir"
+        );
+
+        System.out.println(
+                "======================================"
+        );
     }
 
     // ==========================================
@@ -125,31 +222,62 @@ public class Main {
 
         int opcion;
 
-        // Cuenta los materiales registrados desde este submenú.
+        // Cuenta los materiales registrados
+        // desde este submenú.
         int registrados = 0;
 
         do {
 
-            System.out.println("\n======================================");
-            System.out.println("          REGISTRAR MATERIAL");
-            System.out.println("======================================");
-            System.out.println("1. Registrar libro");
-            System.out.println("2. Registrar revista");
-            System.out.println("3. Registrar libro digital");
-            System.out.println("0. Volver");
-            System.out.println("======================================");
+            System.out.println(
+                    "\n======================================"
+            );
 
-            System.out.print("Seleccione una opción: ");
+            System.out.println(
+                    "          REGISTRAR MATERIAL"
+            );
 
-            String entrada = scanner.nextLine();
+            System.out.println(
+                    "======================================"
+            );
+
+            System.out.println(
+                    "1. Registrar libro"
+            );
+
+            System.out.println(
+                    "2. Registrar revista"
+            );
+
+            System.out.println(
+                    "3. Registrar libro digital"
+            );
+
+            System.out.println(
+                    "0. Volver"
+            );
+
+            System.out.println(
+                    "======================================"
+            );
+
+            System.out.print(
+                    "Seleccione una opción: "
+            );
+
+            String entrada =
+                    scanner.nextLine();
 
             try {
 
-                opcion = Integer.parseInt(entrada);
+                opcion =
+                        Integer.parseInt(entrada);
 
             } catch (NumberFormatException e) {
 
-                System.out.println("Opción inválida.");
+                System.out.println(
+                        "Opción inválida."
+                );
+
                 opcion = -1;
             }
 
@@ -189,7 +317,9 @@ public class Main {
 
                 default:
 
-                    System.out.println("Opción inválida.");
+                    System.out.println(
+                            "Opción inválida."
+                    );
             }
 
         } while (opcion != 0);
@@ -201,26 +331,38 @@ public class Main {
     // ESTADÍSTICAS
     // ==========================================
 
-    private static void mostrarEstadisticas(int materialesCreados) {
+    private static void mostrarEstadisticas(
+            int materialesCreados) {
 
-        System.out.println("\n======================================");
-        System.out.println("             ESTADÍSTICAS");
-        System.out.println("======================================");
+        System.out.println(
+                "\n======================================"
+        );
 
-        // Este contador incluye los materiales iniciales
-        // y los registrados posteriormente.
+        System.out.println(
+                "             ESTADÍSTICAS"
+        );
+
+        System.out.println(
+                "======================================"
+        );
+
+        // Contador total actual.
         System.out.println(
                 "Total de materiales: "
                 + Material.getCantidadMateriales()
         );
 
-        // Este contador solamente cuenta los materiales
-        // registrados por el usuario durante la ejecución.
+        // Materiales registrados durante
+        // esta ejecución.
         System.out.println(
-                "Materiales registrados durante la ejecución: "
+                "Materiales registrados durante "
+                + "la ejecución: "
                 + materialesCreados
         );
 
-        System.out.println("======================================");
+        System.out.println(
+                "======================================"
+        );
     }
 }
+
