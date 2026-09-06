@@ -1,47 +1,39 @@
 public class Libro extends Material implements Prestable {
 
-    // Atributo propio del libro
     private String autor;
-
     private boolean prestado;
 
-    // ==========================================
-    // CONSTRUCTOR
-    // ==========================================
+    public Libro(int id, String nombre, int publicacion) {
 
-    public Libro(
-            int id,
-            String nombre,
-            int Publicacion,
-            String autor) {
+        super(id, nombre, publicacion);
 
-        super(
-                id,
-                nombre,
-                Publicacion
-        );
-
-        this.autor = autor;
+        this.autor = "";
         this.prestado = false;
     }
 
-    // ==========================================
-    // GETTER Y SETTER DEL AUTOR
-    // ==========================================
+    // =========================
+    // GETTERS
+    // =========================
 
     public String getAutor() {
-
         return autor;
     }
 
-    public void setAutor(String autor) {
+    public boolean isPrestado() {
+        return prestado;
+    }
 
+    // =========================
+    // SETTERS
+    // =========================
+
+    public void setAutor(String autor) {
         this.autor = autor;
     }
 
-    // ==========================================
+    // =========================
     // PRESTAR
-    // ==========================================
+    // =========================
 
     @Override
     public void prestar() {
@@ -49,11 +41,8 @@ public class Libro extends Material implements Prestable {
         if (!prestado) {
 
             prestado = true;
-            setDisponible(false);
 
-            System.out.println(
-                    "El libro ha sido prestado correctamente."
-            );
+            setDisponible(false);
 
         } else {
 
@@ -63,9 +52,9 @@ public class Libro extends Material implements Prestable {
         }
     }
 
-    // ==========================================
+    // =========================
     // DEVOLVER
-    // ==========================================
+    // =========================
 
     @Override
     public void devolver() {
@@ -73,11 +62,8 @@ public class Libro extends Material implements Prestable {
         if (prestado) {
 
             prestado = false;
-            setDisponible(true);
 
-            System.out.println(
-                    "El libro ha sido devuelto correctamente."
-            );
+            setDisponible(true);
 
         } else {
 
@@ -87,54 +73,51 @@ public class Libro extends Material implements Prestable {
         }
     }
 
-    // ==========================================
+    // =========================
     // MOSTRAR INFORMACIÓN
-    // ==========================================
+    // =========================
 
     @Override
     public void mostrarInfo() {
 
         System.out.println(
-                "----------------------------------"
+                "-----------------------------------"
         );
 
         System.out.println("Tipo: Libro");
-        System.out.println("ID: " + getId());
-        System.out.println("Título: " + getNombre());
 
-        if (autor.isEmpty()) {
+        System.out.println(
+                "ID: " + getId()
+        );
 
-            System.out.println("Autor: Pendiente");
+        System.out.println(
+                "Nombre: " + getNombre()
+        );
+
+        System.out.println(
+                "Autor: " + autor
+        );
+
+        System.out.println(
+                "Año de publicación: " +
+                getPublicacion()
+        );
+
+        if (prestado) {
+
+            System.out.println(
+                    "Estado: Prestado"
+            );
 
         } else {
 
             System.out.println(
-                    "Autor: " + autor
+                    "Estado: Disponible"
             );
         }
 
-        if (getPublicacion() == 0) {
-
-            System.out.println(
-                    "Año de publicación: Pendiente"
-            );
-
-        } else {
-
-            System.out.println(
-                    "Año de publicación: "
-                    + getPublicacion()
-            );
-        }
-
-        if (isDisponible()) {
-
-            System.out.println("Estado: Disponible");
-
-        } else {
-
-            System.out.println("Estado: Prestado");
-        }
+        System.out.println(
+                "-----------------------------------"
+        );
     }
 }
-

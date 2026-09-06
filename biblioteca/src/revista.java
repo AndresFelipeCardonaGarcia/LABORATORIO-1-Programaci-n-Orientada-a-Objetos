@@ -1,48 +1,43 @@
 public class Revista extends Material implements Prestable {
 
-    // Atributo propio de la revista
     private int numeroEdicion;
-
     private boolean prestada;
-
-    // ==========================================
-    // CONSTRUCTOR
-    // ==========================================
 
     public Revista(
             int id,
             String nombre,
-            int Publicacion,
-            int numeroEdicion) {
+            int publicacion
+    ) {
 
-        super(
-                id,
-                nombre,
-                Publicacion
-        );
+        super(id, nombre, publicacion);
 
-        this.numeroEdicion = numeroEdicion;
+        this.numeroEdicion = 0;
         this.prestada = false;
     }
 
-    // ==========================================
-    // GETTER Y SETTER
-    // ==========================================
+    // =========================
+    // GETTERS
+    // =========================
 
     public int getNumeroEdicion() {
-
         return numeroEdicion;
     }
 
-    public void setNumeroEdicion(
-            int numeroEdicion) {
+    public boolean isPrestada() {
+        return prestada;
+    }
 
+    // =========================
+    // SETTERS
+    // =========================
+
+    public void setNumeroEdicion(int numeroEdicion) {
         this.numeroEdicion = numeroEdicion;
     }
 
-    // ==========================================
+    // =========================
     // PRESTAR
-    // ==========================================
+    // =========================
 
     @Override
     public void prestar() {
@@ -50,11 +45,8 @@ public class Revista extends Material implements Prestable {
         if (!prestada) {
 
             prestada = true;
-            setDisponible(false);
 
-            System.out.println(
-                    "La revista ha sido prestada correctamente."
-            );
+            setDisponible(false);
 
         } else {
 
@@ -64,9 +56,9 @@ public class Revista extends Material implements Prestable {
         }
     }
 
-    // ==========================================
+    // =========================
     // DEVOLVER
-    // ==========================================
+    // =========================
 
     @Override
     public void devolver() {
@@ -74,11 +66,8 @@ public class Revista extends Material implements Prestable {
         if (prestada) {
 
             prestada = false;
-            setDisponible(true);
 
-            System.out.println(
-                    "La revista ha sido devuelta correctamente."
-            );
+            setDisponible(true);
 
         } else {
 
@@ -88,56 +77,52 @@ public class Revista extends Material implements Prestable {
         }
     }
 
-    // ==========================================
+    // =========================
     // MOSTRAR INFORMACIÓN
-    // ==========================================
+    // =========================
 
     @Override
     public void mostrarInfo() {
 
         System.out.println(
-                "----------------------------------"
+                "-----------------------------------"
         );
 
         System.out.println("Tipo: Revista");
-        System.out.println("ID: " + getId());
-        System.out.println("Título: " + getNombre());
 
-        if (getPublicacion() == 0) {
+        System.out.println(
+                "ID: " + getId()
+        );
+
+        System.out.println(
+                "Nombre: " + getNombre()
+        );
+
+        System.out.println(
+                "Número de edición: " +
+                numeroEdicion
+        );
+
+        System.out.println(
+                "Año de publicación: " +
+                getPublicacion()
+        );
+
+        if (prestada) {
 
             System.out.println(
-                    "Año de publicación: Pendiente"
+                    "Estado: Prestada"
             );
 
         } else {
 
             System.out.println(
-                    "Año de publicación: "
-                    + getPublicacion()
+                    "Estado: Disponible"
             );
         }
 
-        if (numeroEdicion == 0) {
-
-            System.out.println(
-                    "Número de edición: Pendiente"
-            );
-
-        } else {
-
-            System.out.println(
-                    "Número de edición: "
-                    + numeroEdicion
-            );
-        }
-
-        if (isDisponible()) {
-
-            System.out.println("Estado: Disponible");
-
-        } else {
-
-            System.out.println("Estado: Prestada");
-        }
+        System.out.println(
+                "-----------------------------------"
+        );
     }
 }

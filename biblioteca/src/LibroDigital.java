@@ -1,61 +1,55 @@
-public class LibroDigital extends Material implements Descargable {
+public class LibroDigital
+        extends Material
+        implements Descargable {
 
-    // Atributos propios del libro digital
     private String autor;
     private float tamanoArchivo;
-
     private int cantidadDescargas;
-
-    // ==========================================
-    // CONSTRUCTOR
-    // ==========================================
 
     public LibroDigital(
             int id,
             String nombre,
-            int Publicacion,
-            String autor,
-            float tamanoArchivo) {
+            int publicacion
+    ) {
 
-        super(
-                id,
-                nombre,
-                Publicacion
-        );
+        super(id, nombre, publicacion);
 
-        this.autor = autor;
-        this.tamanoArchivo = tamanoArchivo;
+        this.autor = "";
+        this.tamanoArchivo = 0;
         this.cantidadDescargas = 0;
     }
 
-    // ==========================================
-    // GETTERS Y SETTERS
-    // ==========================================
+    // =========================
+    // GETTERS
+    // =========================
 
     public String getAutor() {
-
         return autor;
     }
 
-    public void setAutor(String autor) {
-
-        this.autor = autor;
-    }
-
     public float getTamanoArchivo() {
-
         return tamanoArchivo;
     }
 
-    public void setTamanoArchivo(
-            float tamanoArchivo) {
+    public int getCantidadDescargas() {
+        return cantidadDescargas;
+    }
 
+    // =========================
+    // SETTERS
+    // =========================
+
+    public void setAutor(String autor) {
+        this.autor = autor;
+    }
+
+    public void setTamanoArchivo(float tamanoArchivo) {
         this.tamanoArchivo = tamanoArchivo;
     }
 
-    // ==========================================
+    // =========================
     // DESCARGAR
-    // ==========================================
+    // =========================
 
     @Override
     public void descargar() {
@@ -63,24 +57,24 @@ public class LibroDigital extends Material implements Descargable {
         cantidadDescargas++;
 
         System.out.println(
-                "El libro digital se ha descargado correctamente."
+                "Descarga realizada correctamente."
         );
 
         System.out.println(
-                "Cantidad de descargas: "
-                + cantidadDescargas
+                "Cantidad de descargas: " +
+                cantidadDescargas
         );
     }
 
-    // ==========================================
+    // =========================
     // MOSTRAR INFORMACIÓN
-    // ==========================================
+    // =========================
 
     @Override
     public void mostrarInfo() {
 
         System.out.println(
-                "----------------------------------"
+                "-----------------------------------"
         );
 
         System.out.println(
@@ -92,55 +86,34 @@ public class LibroDigital extends Material implements Descargable {
         );
 
         System.out.println(
-                "Título: " + getNombre()
+                "Nombre: " + getNombre()
         );
-
-        if (autor.isEmpty()) {
-
-            System.out.println(
-                    "Autor: Pendiente"
-            );
-
-        } else {
-
-            System.out.println(
-                    "Autor: " + autor
-            );
-        }
-
-        if (getPublicacion() == 0) {
-
-            System.out.println(
-                    "Año de publicación: Pendiente"
-            );
-
-        } else {
-
-            System.out.println(
-                    "Año de publicación: "
-                    + getPublicacion()
-            );
-        }
-
-        if (tamanoArchivo == 0) {
-
-            System.out.println(
-                    "Tamaño del archivo: Pendiente"
-            );
-
-        } else {
-
-            System.out.println(
-                    "Tamaño del archivo: "
-                    + tamanoArchivo
-                    + " MB"
-            );
-        }
 
         System.out.println(
-                "Cantidad de descargas: "
-                + cantidadDescargas
+                "Autor: " + autor
+        );
+
+        System.out.println(
+                "Año de publicación: " +
+                getPublicacion()
+        );
+
+        System.out.println(
+                "Tamaño del archivo: " +
+                tamanoArchivo
+        );
+
+        System.out.println(
+                "Cantidad de descargas: " +
+                cantidadDescargas
+        );
+
+        System.out.println(
+                "Estado: Disponible"
+        );
+
+        System.out.println(
+                "-----------------------------------"
         );
     }
-}
-
+}   

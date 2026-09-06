@@ -10,9 +10,13 @@ public class Main {
         Biblioteca biblioteca =
                 new Biblioteca(scanner);
 
-        // Cuenta únicamente los materiales
-        // registrados por el usuario durante
-        // la ejecución.
+        /*
+         * Cuenta únicamente los materiales que
+         * el usuario registra durante esta ejecución.
+         *
+         * Los materiales iniciales de la biblioteca
+         * NO se cuentan aquí.
+         */
         int materialesCreados = 0;
 
         int opcion;
@@ -36,7 +40,7 @@ public class Main {
             } catch (NumberFormatException e) {
 
                 System.out.println(
-                        "Opción inválida."
+                        "Ingrese una opción válida."
                 );
 
                 opcion = -1;
@@ -44,15 +48,89 @@ public class Main {
 
             switch (opcion) {
 
+                // =========================================
+                // REGISTRAR MATERIAL
+                // =========================================
+
                 case 1:
 
-                    materialesCreados +=
-                            mostrarSubMenuRegistro(
-                                    scanner,
-                                    biblioteca
+                    int tipo;
+
+                    do {
+
+                        mostrarMenuRegistro();
+
+                        System.out.print(
+                                "Seleccione el tipo de material: "
+                        );
+
+                        String entradaTipo =
+                                scanner.nextLine();
+
+                        try {
+
+                            tipo =
+                                    Integer.parseInt(
+                                            entradaTipo
+                                    );
+
+                        } catch (NumberFormatException e) {
+
+                            tipo = -1;
+
+                            System.out.println(
+                                    "Ingrese una opción válida."
                             );
+                        }
+
+                        switch (tipo) {
+
+                            case 1:
+
+                                biblioteca.registrarLibro();
+
+                                materialesCreados++;
+
+                                break;
+
+                            case 2:
+
+                                biblioteca.registrarRevista();
+
+                                materialesCreados++;
+
+                                break;
+
+                            case 3:
+
+                                biblioteca.registrarLibroDigital();
+
+                                materialesCreados++;
+
+                                break;
+
+                            case 0:
+
+                                System.out.println(
+                                        "Regresando al menú principal..."
+                                );
+
+                                break;
+
+                            default:
+
+                                System.out.println(
+                                        "Opción inválida."
+                                );
+                        }
+
+                    } while (tipo != 0);
 
                     break;
+
+                // =========================================
+                // MOSTRAR MATERIALES
+                // =========================================
 
                 case 2:
 
@@ -60,11 +138,19 @@ public class Main {
 
                     break;
 
+                // =========================================
+                // PRESTAR
+                // =========================================
+
                 case 3:
 
                     biblioteca.prestarMaterial();
 
                     break;
+
+                // =========================================
+                // DEVOLVER
+                // =========================================
 
                 case 4:
 
@@ -72,11 +158,19 @@ public class Main {
 
                     break;
 
+                // =========================================
+                // DESCARGAR
+                // =========================================
+
                 case 5:
 
                     biblioteca.descargarMaterial();
 
                     break;
+
+                // =========================================
+                // ELIMINAR
+                // =========================================
 
                 case 6:
 
@@ -84,19 +178,31 @@ public class Main {
 
                     break;
 
+                // =========================================
+                // EDITAR
+                // =========================================
+
                 case 7:
 
                     biblioteca.editarMaterial();
 
                     break;
 
+                // =========================================
+                // ESTADÍSTICAS
+                // =========================================
+
                 case 8:
 
-                    mostrarEstadisticas(
+                    biblioteca.mostrarEstadisticas(
                             materialesCreados
                     );
 
                     break;
+
+                // =========================================
+                // SALIR
+                // =========================================
 
                 case 0:
 
@@ -118,18 +224,18 @@ public class Main {
         scanner.close();
     }
 
-    // ==========================================
+    // =====================================================
     // MENÚ PRINCIPAL
-    // ==========================================
+    // =====================================================
 
-    private static void mostrarMenu() {
+    public static void mostrarMenu() {
 
         System.out.println(
                 "\n======================================"
         );
 
         System.out.println(
-                "           SISTEMA BIBLIOTECA"
+                "       SISTEMA DE BIBLIOTECA"
         );
 
         System.out.println(
@@ -177,147 +283,30 @@ public class Main {
         );
     }
 
-    // ==========================================
-    // SUBMENÚ DE REGISTRO
-    // ==========================================
+    // =====================================================
+    // MENÚ DE REGISTRO
+    // =====================================================
 
-    private static int mostrarSubMenuRegistro(
-            Scanner scanner,
-            Biblioteca biblioteca) {
-
-        int opcion;
-
-        int registrados = 0;
-
-        do {
-
-            System.out.println(
-                    "\n======================================"
-            );
-
-            System.out.println(
-                    "          REGISTRAR MATERIAL"
-            );
-
-            System.out.println(
-                    "======================================"
-            );
-
-            System.out.println(
-                    "1. Registrar libro"
-            );
-
-            System.out.println(
-                    "2. Registrar revista"
-            );
-
-            System.out.println(
-                    "3. Registrar libro digital"
-            );
-
-            System.out.println(
-                    "0. Volver"
-            );
-
-            System.out.println(
-                    "======================================"
-            );
-
-            System.out.print(
-                    "Seleccione una opción: "
-            );
-
-            String entrada =
-                    scanner.nextLine();
-
-            try {
-
-                opcion =
-                        Integer.parseInt(entrada);
-
-            } catch (NumberFormatException e) {
-
-                System.out.println(
-                        "Opción inválida."
-                );
-
-                opcion = -1;
-            }
-
-            switch (opcion) {
-
-                case 1:
-
-                    biblioteca.registrarLibro();
-
-                    registrados++;
-
-                    break;
-
-                case 2:
-
-                    biblioteca.registrarRevista();
-
-                    registrados++;
-
-                    break;
-
-                case 3:
-
-                    biblioteca.registrarLibroDigital();
-
-                    registrados++;
-
-                    break;
-
-                case 0:
-
-                    System.out.println(
-                            "Regresando al menú principal."
-                    );
-
-                    break;
-
-                default:
-
-                    System.out.println(
-                            "Opción inválida."
-                    );
-            }
-
-        } while (opcion != 0);
-
-        return registrados;
-    }
-
-    // ==========================================
-    // ESTADÍSTICAS
-    // ==========================================
-
-    private static void mostrarEstadisticas(
-            int materialesCreados) {
+    public static void mostrarMenuRegistro() {
 
         System.out.println(
-                "\n======================================"
+                "\n========= REGISTRAR MATERIAL ========="
         );
 
         System.out.println(
-                "             ESTADÍSTICAS"
+                "1. Registrar libro"
         );
 
         System.out.println(
-                "======================================"
+                "2. Registrar revista"
         );
 
         System.out.println(
-                "Total de materiales: "
-                + Material.getCantidadMateriales()
+                "3. Registrar libro digital"
         );
 
         System.out.println(
-                "Materiales registrados durante "
-                + "la ejecución: "
-                + materialesCreados
+                "0. Regresar"
         );
 
         System.out.println(

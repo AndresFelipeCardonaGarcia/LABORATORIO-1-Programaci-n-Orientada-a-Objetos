@@ -5,19 +5,15 @@ public class Almacen {
     private ArrayList<Material> materiales;
     private int ultimoId;
 
-    // ==========================================
-    // CONSTRUCTOR
-    // ==========================================
-
     public Almacen() {
 
         materiales = new ArrayList<>();
         ultimoId = 0;
     }
 
-    // ==========================================
+    // =========================
     // GENERAR ID
-    // ==========================================
+    // =========================
 
     public int generarId() {
 
@@ -26,27 +22,19 @@ public class Almacen {
         return ultimoId;
     }
 
-    // ==========================================
-    // GUARDAR LIBRO
-    // ==========================================
+    // =========================
+    // GUARDAR MATERIALES
+    // =========================
 
     public void guardarLibro(Libro libro) {
 
         materiales.add(libro);
     }
 
-    // ==========================================
-    // GUARDAR REVISTA
-    // ==========================================
-
     public void guardarRevista(Revista revista) {
 
         materiales.add(revista);
     }
-
-    // ==========================================
-    // GUARDAR LIBRO DIGITAL
-    // ==========================================
 
     public void guardarLibroDigital(
             LibroDigital libroDigital) {
@@ -54,9 +42,18 @@ public class Almacen {
         materiales.add(libroDigital);
     }
 
-    // ==========================================
+    // =========================
+    // OBTENER MATERIALES
+    // =========================
+
+    public ArrayList<Material> getMateriales() {
+
+        return materiales;
+    }
+
+    // =========================
     // BUSCAR MATERIAL
-    // ==========================================
+    // =========================
 
     public Material buscarMaterial(int id) {
 
@@ -71,9 +68,9 @@ public class Almacen {
         return null;
     }
 
-    // ==========================================
-    // MOSTRAR TODOS LOS MATERIALES
-    // ==========================================
+    // =========================
+    // MOSTRAR TODOS
+    // =========================
 
     public void mostrarInfo() {
 
@@ -96,31 +93,34 @@ public class Almacen {
         }
 
         System.out.println(
-                "----------------------------------"
-        );
-
-        System.out.println(
-                "Total de materiales: "
-                + Material.getCantidadMateriales()
+                "Total de materiales: " +
+                Material.getCantidadMateriales()
         );
     }
 
-    // ==========================================
-    // MOSTRAR MATERIALES DISPONIBLES
-    // ==========================================
+    // =========================
+    // MOSTRAR DISPONIBLES
+    // =========================
 
     public boolean mostrarDisponibles() {
 
         boolean hayDisponibles = false;
 
         System.out.println(
-                "\n===== MATERIALES DISPONIBLES ====="
+                "\n======= MATERIALES DISPONIBLES ======="
         );
 
         for (Material material : materiales) {
 
-            if (material instanceof Prestable
-                    && material.isDisponible()) {
+            /*
+             * Solamente los materiales que se pueden
+             * prestar aparecen como disponibles.
+             *
+             * Los libros digitales se manejan mediante
+             * descarga y no mediante préstamo.
+             */
+            if (material instanceof Prestable &&
+                    material.isDisponible()) {
 
                 material.mostrarInfo();
 
@@ -131,29 +131,29 @@ public class Almacen {
         if (!hayDisponibles) {
 
             System.out.println(
-                    "No hay materiales disponibles."
+                    "No hay materiales disponibles para prestar."
             );
         }
 
         return hayDisponibles;
     }
 
-    // ==========================================
-    // MOSTRAR MATERIALES PRESTADOS
-    // ==========================================
+    // =========================
+    // MOSTRAR PRESTADOS
+    // =========================
 
-    public void mostrarPrestados() {
+    public boolean mostrarPrestados() {
 
         boolean hayPrestados = false;
 
         System.out.println(
-                "\n===== MATERIALES PRESTADOS ====="
+                "\n========= MATERIALES PRESTADOS ========="
         );
 
         for (Material material : materiales) {
 
-            if (material instanceof Prestable
-                    && !material.isDisponible()) {
+            if (material instanceof Prestable &&
+                    !material.isDisponible()) {
 
                 material.mostrarInfo();
 
@@ -167,18 +167,20 @@ public class Almacen {
                     "No hay materiales prestados."
             );
         }
+
+        return hayPrestados;
     }
 
-    // ==========================================
-    // MOSTRAR LIBROS DIGITALES
-    // ==========================================
+    // =========================
+    // MOSTRAR DESCARGABLES
+    // =========================
 
     public boolean mostrarDescargable() {
 
         boolean hayDescargables = false;
 
         System.out.println(
-                "\n===== LIBROS DIGITALES ====="
+                "\n======= LIBROS DIGITALES ======="
         );
 
         for (Material material : materiales) {
@@ -194,38 +196,57 @@ public class Almacen {
         if (!hayDescargables) {
 
             System.out.println(
-                    "No hay libros digitales."
+                    "No hay libros digitales registrados."
             );
         }
 
         return hayDescargables;
     }
 
-    // ==========================================
+    // =========================
     // ELIMINAR MATERIAL
-    // ==========================================
+    // =========================
 
     public boolean eliminarMaterial(int id) {
 
-        Material material =
-                buscarMaterial(id);
+        Material material = buscarMaterial(id);
 
         if (material == null) {
+
+            System.out.println(
+                    "No existe un material con ese ID."
+            );
 
             return false;
         }
 
-        // No se puede eliminar un material prestado
-        if (!material.isDisponible()) {
+        /*
+         * No se puede eliminar un libro o revista
+         * mientras esté prestado.
+         */
+        if (material instanceof Prestable &&
+                !material.isDisponible()) {
+
+            System.out.println(
+                    "No se puede eliminar un material "
+                    + "que se encuentra prestado."
+            );
 
             return false;
         }
 
         materiales.remove(material);
 
+        /*
+         * Al eliminar el objeto del almacén también
+         * disminuimos el contador global de materiales.
+         */
         Material.disminuirCantidadMateriales();
+
+        System.out.println(
+                "Material eliminado correctamente."
+        );
 
         return true;
     }
 }
-

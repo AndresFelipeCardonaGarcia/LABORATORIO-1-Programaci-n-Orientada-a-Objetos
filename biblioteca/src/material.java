@@ -2,94 +2,82 @@ public abstract class Material {
 
     private int id;
     private String nombre;
-    private int Publicacion;
+    private int publicacion;
     private boolean disponible;
 
-    // Contador total de materiales existentes
+    // Cuenta la cantidad de materiales que existen actualmente
     private static int cantidadMateriales = 0;
 
-    // ==========================================
-    // CONSTRUCTOR
-    // ==========================================
-
-    public Material(
-            int id,
-            String nombre,
-            int Publicacion) {
+    public Material(int id, String nombre, int publicacion) {
 
         this.id = id;
         this.nombre = nombre;
-        this.Publicacion = Publicacion;
+        this.publicacion = publicacion;
+
+        // Todo material nuevo comienza disponible
         this.disponible = true;
 
         cantidadMateriales++;
     }
 
-    // ==========================================
+    // =========================
     // GETTERS
-    // ==========================================
+    // =========================
 
     public int getId() {
-
         return id;
     }
 
     public String getNombre() {
-
         return nombre;
     }
 
     public int getPublicacion() {
-
-        return Publicacion;
+        return publicacion;
     }
 
     public boolean isDisponible() {
-
         return disponible;
     }
 
-    // ==========================================
-    // SETTERS
-    // ==========================================
-
-    public void setNombre(String nombre) {
-
-        this.nombre = nombre;
-    }
-
-    public void setPublicacion(int anioPublicacion) {
-
-        this.Publicacion = anioPublicacion;
-    }
-
-    public void setDisponible(boolean disponible) {
-
-        this.disponible = disponible;
-    }
-
-    // ==========================================
-    // CONTADOR
-    // ==========================================
-
     public static int getCantidadMateriales() {
-
         return cantidadMateriales;
     }
 
-    // Disminuye el contador cuando se elimina
-    // un material
+    // =========================
+    // SETTERS
+    // =========================
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setPublicacion(int publicacion) {
+        this.publicacion = publicacion;
+    }
+
+    public void setDisponible(boolean disponible) {
+        this.disponible = disponible;
+    }
+
+    // =========================
+    // CONTADOR
+    // =========================
+
+    /*
+     * Se utiliza cuando un material es eliminado
+     * del almacén.
+     */
     public static void disminuirCantidadMateriales() {
 
         if (cantidadMateriales > 0) {
-
             cantidadMateriales--;
         }
     }
 
-    // ==========================================
-    // MOSTRAR INFORMACIÓN
-    // ==========================================
+    // =========================
+    // MÉTODO ABSTRACTO
+    // =========================
 
     public abstract void mostrarInfo();
 }
